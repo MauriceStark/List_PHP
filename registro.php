@@ -27,7 +27,7 @@
                 echo "Ha habido un error al insertar los valores. $error";
             } else {
                 echo "Los datos han sido introducidos satisfactoriamente" . $sql;
-                echo "<a href='login.php'>Iniciar Sesion</a>";
+                echo "<a href='login.html'>Iniciar Sesion</a>";
             }
         
         }else {       
