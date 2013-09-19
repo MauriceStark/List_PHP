@@ -1,19 +1,15 @@
 <?php
     include("conexion.php");
     
-    //la conexión con la base de datos en MySQL 
-    $conexion = mysql_connect( $host,$user,$password );
-    mysql_select_db( $DBname,$conexion );
-    
    //Se utiliza la función htmlentities para evitar inyecciones SQL.
-    $query_user =   mysql_query( "SELECT USER FROM $tabla WHERE USER = '" . htmlentities( $_POST["NickName"] ) . "'",$conexion);                             
+    $query_user =   mysql_query( "SELECT USER FROM $TABLA WHERE USER = '" . htmlentities( $_POST["NickName"] ) . "'",$conexion);                             
     $rows_user  =   mysql_num_rows( $query_user ); //devuelve el numero de filas de la consulta
    
     //Si existe el usuario, validamos también la contraseña ingresada
     if($rows_user != 0){
         
         $sql = "SELECT USER
-                FROM $tabla
+                FROM $TABLA
                 WHERE
                 USER            =   '" .      htmlentities( $_POST["NickName"]) . "'
                 and PASSWORD    =   '" . md5( htmlentities( $_POST["Password"]) ) . "'";
@@ -27,11 +23,11 @@
             session_start();
             
             //Guardamos dos variables de sesión que nos auxiliará para saber si se está o no “logueado” un usuario
-            $_SESSION["autentica"] = "SIP";
+            $_SESSION["autentica"] = "logueado";
 
-            $_SESSION["usuarioactual"] = mysql_result($query_access,0,0); //nombre del usuario logueado.
+            $_SESSION["user"] = mysql_result($query_access,0,0); //nombre del usuario logueado.
             
-            $uid = mysql_result(mysql_query("SELECT ID FROM tabla_registro WHERE USER = 'maurice'",$conexion),0,0);
+            $uid = mysql_result(mysql_query("SELECT ID FROM tabla_registro WHERE USER = '" . htmlentities( $_POST["NickName"] ) . "'",$conexion),0,0);
             
             $_SESSION["uid"] = $uid;
             
@@ -39,16 +35,15 @@
             header( "Location: home.php" );
         }
         else{
-            echo"<script>
-                    alert('El password del usuario no es correcto.');
-                    window.location.href=\"login.html\"
-                </script>";
+            set_message("El password del usuario no es correcto.");
         }
     }else{
-        echo"<script>
-                alert('El usuario no existe.');
-                window.location.href=\"login.html\"
-            </script>";
+        set_message("El usuario no existe.");
     }
+
     mysql_close($conexion);
+
+
 ?>
+
+

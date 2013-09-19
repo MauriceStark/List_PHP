@@ -1,10 +1,10 @@
  <?php
     // Datos de la conexion
-    $host       =   "localhost" ;
-    $user       =   "root";
-    $password   =   "maurice";
-    $DBname     =   "registro";
-    $tabla      =   "tabla_registro";
+    $HOST       =   "localhost" ;
+    $USER       =   "root";
+    $PASSWORD   =   "maurice";
+    $DB         =   "registro";
+    $TABLA      =   "tabla_registro";
     
     /* 
         ID
@@ -13,5 +13,9 @@
         PASSWORD
         EMAIL
     */
+
+    //la conexión con la base de datos en MySQL 
+    $conexion = mysql_connect( $HOST,$USER,$PASSWORD );
+    mysql_select_db( $DB,$conexion );
        
 ?>        

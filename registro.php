@@ -9,12 +9,9 @@
                 !empty( $_POST[ 'Email'     ]);
        
         if( $full ){      
-            // Si entramos es que todo se ha realizado correctamente
-            $conexion = mysql_connect( $host,$user,$password );
-            mysql_select_db( $DBname,$conexion );
             
             // Con esta sentencia SQL insertaremos los datos en la base de datos
-            $sql = " INSERT INTO $tabla ( NOMBRE,USER,PASSWORD,EMAIL )
+            $sql = " INSERT INTO $TABLA ( NOMBRE,USER,PASSWORD,EMAIL )
                      VALUES (   '{$_POST['Nombre']}',
                                 '{$_POST['NickName']}',
                             MD5('{$_POST['Password']}'),
@@ -26,7 +23,7 @@
             if( !empty($error) ){          
                 echo "Ha habido un error al insertar los valores. $error";
             } else {
-                echo "Los datos han sido introducidos satisfactoriamente" . $sql;
+                echo "Los datos han sido introducidos satisfactoriamente";
                 echo "<a href='login.html'>Iniciar Sesion</a>";
             }
         

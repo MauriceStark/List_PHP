@@ -1,4 +1,5 @@
 <?php include("access_Control.php"); ?>
+
 <?php
         // Datos de la conexion
         include("conexion.php");
@@ -7,10 +8,6 @@
         $full = !empty( $_POST[ 'Parrafo' ] );
        
         if( $full ){      
-            // Si entramos es que todo se ha realizado correctamente
-            $conexion = mysql_connect( $host,$user,$password );
-            mysql_select_db( $DBname,$conexion );
-            $uid= $_SESSION["uid"];
             // Con esta sentencia SQL insertaremos los datos en la base de datos
             $sql = " INSERT INTO parrafos ( uid, texto )
                      VALUES (   '$uid',
