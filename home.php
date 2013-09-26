@@ -17,6 +17,7 @@
         
         <form name="parrafo" action="parrafo.php" method="post">
             <label>Parrafo:      <input type="text" name="Parrafo"> </label>
+            <label>Fecha:      <input type="date" name="Fecha"> </label>
             <input type="submit" value="Enviar">
         </form>
         

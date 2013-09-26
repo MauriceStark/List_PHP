@@ -9,9 +9,10 @@
        
         if( $full ){      
             // Con esta sentencia SQL insertaremos los datos en la base de datos
-            $sql = " INSERT INTO parrafos ( uid, texto )
+            $sql = " INSERT INTO parrafos ( uid, texto, fecha )
                      VALUES (   '$uid',
-                                '{$_POST['Parrafo']}')";
+                                '{$_POST['Parrafo']}',
+                                '{$_POST['Fecha']}')";
             
             mysql_query( $sql,$conexion );
             $error = mysql_error( $conexion );

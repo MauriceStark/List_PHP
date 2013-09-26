@@ -25,7 +25,7 @@
 
 	function print_content($uid){
 		
-		$consulta = "SELECT texto,pid FROM parrafos WHERE uid = $uid";
+		$consulta = "SELECT texto,pid,fecha FROM parrafos WHERE uid = $uid";
 
 		$resultado= @mysql_query($consulta) or die(mysql_error());
 		$output = "";
@@ -33,7 +33,8 @@
 		while ($datos = @mysql_fetch_assoc($resultado) ){
 				$pid 		= $datos['pid'];			
 		    
-		    $output .=  "<p>". $datos['texto'] . "</p> 	<br> 
+		    $output .=  "<p>". $datos['texto'] . "</p>" .
+		    						"<p>". $datos['fecha'] . "</p><br> 
 		    <a href='delete.php?pid=$pid'>	Eliminar 		</a>
 		    <a href='disable.php?pid=$pid'>	Desabilitar </a>
 		    <a href='enable.php?pid=$pid'>	Habilitar 	</a>";
