@@ -1,6 +1,6 @@
 <?php
     include("conexion.php");
-
+    include("functions.php");
    //Se utiliza la función htmlentities para evitar inyecciones SQL.
     $query_user =   mysql_query( "SELECT USER FROM $TABLA WHERE USER = '" . htmlentities( $_POST["NickName"] ) . "'",$conexion);
     $rows_user  =   mysql_num_rows( $query_user ); //devuelve el numero de filas de la consulta
