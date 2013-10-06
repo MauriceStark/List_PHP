@@ -1,8 +1,8 @@
 <?php
     //conexion a la base de datos
-    include("conexion.php");
-    include("access_Control.php");
-    include("functions.inc");
+    include("core/conexion.php");
+    include("core/access_Control.php");
+    include("core/functions.php");
 ?>
 <html>
     <head>
@@ -15,7 +15,7 @@
         <h2>USER ID: <?php echo $uid ?> </h2><br>
         <p>Entro correctamente al sistema.</p><br><br>
 
-        <form name="parrafo" action="parrafo.php" method="post">
+        <form name="parrafo" action="core/parrafo.php" method="post">
             <label>Parrafo:      <input type="text" name="Parrafo"> </label>
             <label>Fecha:      <input type="date" name="Fecha"> </label>
             <input type="submit" value="Enviar">
@@ -23,6 +23,6 @@
 
         <?php print print_content($uid); ?>
 
-        <a href="logout.php">Salir</a>
+        <a href="core/logout.php">Salir</a>
     </body>
 </html>

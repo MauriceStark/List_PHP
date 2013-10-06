@@ -32,13 +32,13 @@
             $_SESSION["uid"] = $uid;
 
             //Direccionamos a nuestra página principal del sistema.
-            header( "Location: home.php" );
+            header( "Location: ../home.php" );
         }
         else{
-            set_message("El password del usuario no es correcto.");
+            set_message("El nombre de usuario o la contraseña no son correctos.");
         }
     }else{
-        set_message("El usuario no existe.");
+         set_message("El nombre de usuario o la contraseña no son correctos.");
     }
 
     mysql_close($conexion);

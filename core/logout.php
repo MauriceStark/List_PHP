@@ -6,5 +6,5 @@
     session_destroy();
 
     //Redireccionamos (al inicio de sesion)
-    header("Location: login.html");
+    header("Location: ../login.html");
 ?>

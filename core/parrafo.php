@@ -21,7 +21,7 @@
                 echo "Ha habido un error al insertar los valores. $error";
             } else {
                 echo "Los datos han sido introducidos satisfactoriamente" . $sql;
-                header("Location: home.php");
+                header("Location: ../home.php");
             }
 
         }else {

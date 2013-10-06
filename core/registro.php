@@ -15,7 +15,7 @@
                      VALUES (   '{$_POST['Nombre']}',
                                 '{$_POST['NickName']}',
                             MD5('{$_POST['Password']}'),
-                                '{$_POST['Email']}'     )";
+                                '{$_POST['Email']}'	)";
 
             mysql_query( $sql,$conexion );
             $error = mysql_error( $conexion );
