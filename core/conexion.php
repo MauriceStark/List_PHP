@@ -8,7 +8,6 @@
 
     /*
         ID
-        NOMBRE
         USER
         PASSWORD
         EMAIL
