@@ -5,8 +5,8 @@
     $PASSWORD   =   "maurice";
     $DB         =   "registro";
     $TABLA      =   "tabla_registro";
-    
-    /* 
+
+    /*
         ID
         NOMBRE
         USER
@@ -14,8 +14,8 @@
         EMAIL
     */
 
-    //la conexión con la base de datos en MySQL 
+    //la conexión con la base de datos en MySQL
     $conexion = mysql_connect( $HOST,$USER,$PASSWORD );
     mysql_select_db( $DB,$conexion );
-       
-?>        
+
+?>

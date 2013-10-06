@@ -1,4 +1,4 @@
 <?php
 	include("functions.inc");
-	content_status(0);
+	content_status(1);
 ?>
