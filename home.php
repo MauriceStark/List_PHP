@@ -26,15 +26,14 @@
 			<?php
 			// isset devuelve TRUE si la busuqeda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
 			if( isset($_GET[ 'search' ]) ){
-				print print_search($uid, $_GET[ 'search' ]);
-			?>
+				?>
 				<a href="home.php">Ver todos </a>
-			<?php
+				<?php
+				print get_search($uid, $_GET[ 'search' ]);
 			}else{
-				print print_content($uid);
+				print get_content($uid);
 			}
 			?>
-
         <p><a href="core/logout.php">Salir</a></p>
     </body>
 </html>
