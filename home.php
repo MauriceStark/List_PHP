@@ -12,7 +12,7 @@
         <h1>Bienvenido  <?php echo $user ?>!</h1>
 				<p>Publica tus eventos o tareas proximas.</p>
 
-         <form name="buscar" action="core/search.php" method="get">
+         <form name="buscar" action="" method="get">
             <label>	<input type="text" name="search" placeholder="Buscar..."> </label>
             <input type="submit" value="Buscar">
         </form>
@@ -23,7 +23,18 @@
             <input type="submit" value="Publicar">
         </form>
 
-        <?php print print_content($uid); ?>
+			<?php
+			// isset devuelve TRUE si la busuqeda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
+			if( isset($_GET[ 'search' ]) ){
+				print print_search($uid, $_GET[ 'search' ]);
+			?>
+				<a href="home.php">Ver todos </a>
+			<?php
+			}else{
+				print print_content($uid);
+			}
+			?>
+
         <p><a href="core/logout.php">Salir</a></p>
     </body>
 </html>

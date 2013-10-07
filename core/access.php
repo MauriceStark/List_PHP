@@ -35,10 +35,10 @@
             header( "Location: ../home.php" );
         }
         else{
-            set_message("El nombre de usuario o la contraseña no son correctos.");
+            set_message_error("El nombre de usuario o la contraseña no son correctos.");
         }
     }else{
-         set_message("El nombre de usuario o la contraseña no son correctos.");
+         set_message_error("El nombre de usuario o la contraseña no son correctos.");
     }
 
     mysql_close($conexion);
