@@ -27,5 +27,4 @@
         }else {
             echo "Error, no ha introducido todos los datos";
         }
-
-    ?>
+?>

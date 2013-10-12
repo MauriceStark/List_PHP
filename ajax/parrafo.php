@@ -15,9 +15,13 @@ mysql_select_db($bd_base, $con);
   $uid = 40;
 
 //registra los datos del empleados
-  $sql="INSERT INTO parrafos (uid, texto, fecha) VALUES ('$uid','$texto', '$fecha')";
+  $sql = "INSERT INTO parrafos (uid, texto, fecha) VALUES ('$uid','$texto', '$fecha')";
 
 mysql_query($sql,$con) or die('Error. '.mysql_error());
 
-include('consulta.php');
+	include('consulta.php');
 ?>
+
+
+
+
