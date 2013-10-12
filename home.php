@@ -6,6 +6,7 @@
 <html>
     <head>
         <title> <?php echo $user ?> | List </title>
+        <script language="JavaScript" type="text/javascript" src="ajax.js"></script>
         <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
     </head>
     <body>
@@ -22,6 +23,13 @@
 		 </form>
 -->
 
+		 <form name="form" action=""  onsubmit="enviarDatos(); return false">
+			   <input type="texto"  name="Parrafo" />
+				<input type="date" 	name="Fecha">
+            <input type="submit" value="Publicar">
+		</form>
+
+<!--
        <form name="buscar" action="" method="get">
             <label>	<input type="text" name="search" placeholder="Buscar..."> </label>
             <input type="submit" value="Buscar">
@@ -32,6 +40,7 @@
             <label> <input type="date" name="Fecha"> </label>
             <input type="submit" value="Publicar">
         </form>
+-->
 
 			<?php
 			// isset devuelve TRUE si la busuqeda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
@@ -39,11 +48,16 @@
 				?>
 				<a href="home.php">Ver todos </a>
 				<?php
-				print get_search($uid, $_GET[ 'search' ]);
+				//print get_search($uid, $_GET[ 'search' ]);
 			}else{
-				print get_content($uid);
+				//print get_content($uid);
 			}
 			?>
+
+        	<div id="resultado">
+				<?php print get_content($uid);?>
+		   </div>
+
         <p><a href="core/logout.php">Salir</a></p>
     </body>
 </html>

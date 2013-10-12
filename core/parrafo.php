@@ -1,8 +1,9 @@
-<?php include("access_Control.php"); ?>
 
 <?php
         // Datos de la conexion
+        include("access_Control.php");
         include("conexion.php");
+        include("functions.php");
 
         // Primero comprobamos que ningún campo esté vacío y que todos los campos existan.
         $full = !empty( $_POST[ 'Parrafo' ] );
@@ -21,10 +22,11 @@
                 echo "Ha habido un error al insertar los valores. $error";
             } else {
                 echo "Los datos han sido introducidos satisfactoriamente" . $sql;
-                header("Location: ../home.php");
             }
 
         }else {
             echo "Error, no ha introducido todos los datos";
         }
+        
+       print get_content($uid);
 ?>

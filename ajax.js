@@ -26,16 +26,16 @@ function enviarDatos(){
   //div donde se mostrará lo resultados
   divResultado = document.getElementById('resultado');
   //recogemos los valores de los inputs
-  texto = document.form_List.texto.value;
-  fecha = document.form_List.fecha.value;
+  P = document.form.Parrafo.value;
+  F = document.form.Fecha.value;
 
   //instanciamos el objetoAjax
   ajax = objetoAjax();
 
-  //uso del medoto POST
+  //uso del medotod POST
   //archivo que realizará la operacion
-
-  ajax.open("POST", "parrafo.php",true);
+  //registro.php
+  ajax.open("POST", "core/parrafo.php",true);
   //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
   ajax.onreadystatechange = function() {
 	  //la función responseText tiene todos los datos pedidos al servidor
@@ -48,11 +48,11 @@ function enviarDatos(){
  }
 	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	//enviando los valores a registro.php para que inserte los datos
-	ajax.send("texto="+ texto + "&fecha=" + fecha)
+	ajax.send("Parrafo="+ P + "&Fecha=" + F)
 }
 
 //función para limpiar los campos
 function LimpiarCampos(){
-  document.form_List.texto.value = "";
-  document.form_List.fecha.value = "";
+  document.form.Parrafo.value = "";
+  document.form.Fecha.value = "";
 }
