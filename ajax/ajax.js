@@ -2,7 +2,7 @@
 
 // Función para recoger los datos de PHP según el navegador, se usa siempre.
 function objetoAjax(){
-	var xmlhttp=false;
+	var xmlhttp = false;
 	try {
 		xmlhttp = new ActiveXObject("Msxml2.XMLHTTP");
 	} catch (e) {
@@ -21,16 +21,16 @@ if (!xmlhttp && typeof XMLHttpRequest!='undefined') {
 }
 
 //Función para recoger los datos del formulario y enviarlos por post
-function enviarDatosEmpleado(){
+function enviarDatos(){
 
   //div donde se mostrará lo resultados
   divResultado = document.getElementById('resultado');
   //recogemos los valores de los inputs
-  nom=document.nuevo_empleado.nombre.value;
-  ape=document.nuevo_empleado.apellido.value;
+  texto = document.form_List.texto.value;
+  fecha = document.form_List.fecha.value;
 
   //instanciamos el objetoAjax
-  ajax=objetoAjax();
+  ajax = objetoAjax();
 
   //uso del medotod POST
   //archivo que realizará la operacion
@@ -48,12 +48,11 @@ function enviarDatosEmpleado(){
  }
 	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
 	//enviando los valores a registro.php para que inserte los datos
-	ajax.send("nombre="+nom+"&apellido="+ape)
+	ajax.send("texto="+ texto + "&fecha=" + fecha)
 }
 
 //función para limpiar los campos
 function LimpiarCampos(){
-  document.nuevo_empleado.nombre.value="";
-  document.nuevo_empleado.apellido.value="";
-  document.nuevo_empleado.nombre.focus();
+  document.form_List.texto.value = "";
+  document.form_List.fecha.value = "";
 }

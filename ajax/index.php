@@ -4,9 +4,9 @@
   <script language="JavaScript" type="text/javascript" src="ajax.js"></script>
   </head>
   <body>
-		<form name="nuevo_empleado" action="" onsubmit="enviarDatosEmpleado(); return false">
-			<input name="nombre" type="text" />
-				<input type="date" name="apellido">
+		<form name="form_List" action="" onsubmit="enviarDatos(); return false">
+			<input name="texto" type="text" />
+				<input type="date" name="fecha">
             <input type="submit" name="Submit" value="Enviar" />
 		</form>
 
