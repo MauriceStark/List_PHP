@@ -44,7 +44,11 @@ function get_content($uid){
 */
 function get_search($uid,$search){
 	$query = "SELECT texto,uid,pid,fecha FROM parrafos WHERE ( texto LIKE '%".$search."%' OR fecha LIKE '%".$search."%' ) AND uid = $uid ORDER BY pid DESC";
-	return format_html($query) == "" ? "No tines eventos" : format_html($query);
+
+	$search_result  = '<a class="all-search" href="home.php">Ver todos </a>';
+	$search_result .= format_html($query) == "" ? "No tines eventos" : format_html($query);
+
+	return $search_result;
 }
 
 /**

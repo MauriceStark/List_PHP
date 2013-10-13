@@ -23,39 +23,24 @@
 		 </form>
 -->
 
-		 <form name="form" action=""  onsubmit="enviarDatos(); return false">
-			   <input type="texto"  name="Parrafo" />
-				<input type="date" 	name="Fecha">
-            <input type="submit" value="Publicar">
-		</form>
-
-<!--
-       <form name="buscar" action="" method="get">
+		 <form name="buscar" action="" method="get">
             <label>	<input type="text" name="search" placeholder="Buscar..."> </label>
             <input type="submit" value="Buscar">
         </form>
 
-        <form name="parrafo" action="core/parrafo.php" method="post">
-            <label>	<input type="text" name="Parrafo" placeholder="Escribe tu evento..."> </label>
-            <label> <input type="date" name="Fecha"> </label>
+		 <form name="form" action=""  onsubmit="enviarDatos(); return false">
+			   <input type="texto"  name="Parrafo" placeholder="Escribe tu evento..." />
+				<input type="date" 	name="Fecha">
             <input type="submit" value="Publicar">
-        </form>
--->
+		</form>
 
-			<?php
-			// isset devuelve TRUE si la busuqeda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
-			if( isset($_GET[ 'search' ]) ){
-				?>
-				<a href="home.php">Ver todos </a>
+			<div id="resultado"> <!-- Div donde se mostraran los resultados mediante ajax-->
+
+
 				<?php
-				//print get_search($uid, $_GET[ 'search' ]);
-			}else{
-				//print get_content($uid);
-			}
-			?>
-
-        	<div id="resultado">
-				<?php print get_content($uid);?>
+		   		// isset devuelve TRUE si la busqueda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
+		   		print isset($_GET[ 'search' ]) ? get_search($uid, $_GET[ 'search' ]) : get_content($uid);
+		   	?>
 		   </div>
 
         <p><a href="core/logout.php">Salir</a></p>

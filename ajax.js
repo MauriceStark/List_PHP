@@ -34,7 +34,6 @@ function enviarDatos(){
 
   //uso del medotod POST
   //archivo que realizará la operacion
-  //registro.php
   ajax.open("POST", "core/parrafo.php",true);
   //cuando el objeto XMLHttpRequest cambia de estado, la función se inicia
   ajax.onreadystatechange = function() {
@@ -47,7 +46,7 @@ function enviarDatos(){
 	}
  }
 	ajax.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
-	//enviando los valores a registro.php para que inserte los datos
+	//enviando los valores a parrafo.php para que inserte los datos
 	ajax.send("Parrafo="+ P + "&Fecha=" + F)
 }
 
