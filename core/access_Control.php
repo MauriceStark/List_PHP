@@ -5,7 +5,7 @@
     //Validamos si existe realmente una sesión activa o no
     if($_SESSION["autentica"] != "logueado"){
         //Si no hay sesión activa, lo direccionamos
-        header("Location: ../login.html");
+        header("Location: login.html");
         exit();
     }
 

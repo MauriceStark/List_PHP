@@ -85,7 +85,7 @@ function get_image($uid){
 }
 
 function delete_image($uid){
-	mysql_query("DELETE FROM registro . imagenes  WHERE $uid  = $uid") or die( mysql_error() );
+	mysql_query("DELETE FROM registro . imagenes  WHERE uid = $uid") or die( mysql_error() );
 }
 
 function upload_image($uid){
