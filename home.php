@@ -16,13 +16,13 @@
         <p>Publica tus eventos o tareas proximas.</p>
 
 
-       <form action="" method="POST" enctype="multipart/form-data">
-			  <input type="file" name="imagen" id="imagen" />
-			  <input type="submit" name="subir" value="Subir"/>
+       <form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
+			  <input type="file" 	name="imagen" id="imagen" />
+			  <input type="submit" 	name="subir" value="Subir"/>
 		 </form>
 
 		 <form name="buscar" action="" method="get">
-            <label>	<input type="text" name="search" placeholder="Buscar..."> </label>
+            <input type="text" name="search" placeholder="Buscar...">
             <input type="submit" value="Buscar">
         </form>
 
@@ -33,8 +33,6 @@
 		</form>
 
 			<div id="resultado"> <!-- Div donde se mostraran los resultados mediante ajax-->
-
-
 				<?php
 		   		// isset devuelve TRUE si la busqueda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
 		   		print isset($_GET[ 'search' ]) ? get_search($uid, $_GET[ 'search' ]) : get_content($uid);
