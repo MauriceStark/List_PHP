@@ -1,17 +1,47 @@
 
 body {
 	font-family:arial;
+	background-color:rgba(0, 0, 0, 0.04);
+	margin:0;
+	padding:0;
 }
 
-#avatar{
+header{
+	position:relative;
+	background-color:rgba(0, 0, 0, 0.04);
+	width:100%;
+	height:60px;
+	z-index:10;
+}
+
+.avatar{
 	border: 20px solid rgba(0,0,0,.1);
 	width:100px;
 	height:100px;
 	border-radius: 100%;
 }
 
+#resultado{
+
+}
 
 .container{
 	width:960px;
 	margin: 0px auto;
 }
+
+.logout{
+}
+
+
+.logo{
+}
+
+.back-search{}
+
+.enable{}
+
+.disable{}
+
+.delete{}
+

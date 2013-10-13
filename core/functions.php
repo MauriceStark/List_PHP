@@ -45,7 +45,7 @@ function get_content($uid){
 function get_search($uid,$search){
 	$query = "SELECT texto,uid,pid,fecha FROM parrafos WHERE ( texto LIKE '%".$search."%' OR fecha LIKE '%".$search."%' ) AND uid = $uid ORDER BY pid DESC";
 
-	$search_result  = '<a class="all-search" href="home.php">Ver todos </a>';
+	$search_result  = '<a class="back-search" href="home.php">Ver todos </a>';
 	$search_result .= format_html($query) == "" ? "No tines eventos" : format_html($query);
 
 	return $search_result;
@@ -66,9 +66,9 @@ function format_html($query){
 
 		$output .=  "<p>". $datos['texto'] . "</p>" .
 						"<p>". $datos['fecha'] . "</p><br>
-						 <a href='core/delete.php?pid=$pid' 	id='delete'>	Eliminar 	</a>
-						 <a href='core/disable.php?pid=$pid'	id='disable'>	Desabilitar </a>
-						 <a href='core/enable.php?pid=$pid'  	id='enable'>	Habilitar 	</a>";
+						 <a href='core/delete.php?pid=$pid' 	class='delete'>	Eliminar 	</a>
+						 <a href='core/disable.php?pid=$pid'	class='disable'>	Desabilitar </a>
+						 <a href='core/enable.php?pid=$pid'  	class='enable'>	Habilitar 	</a>";
 	}
 	return $output;
 }
