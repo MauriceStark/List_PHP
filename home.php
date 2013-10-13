@@ -15,13 +15,11 @@
         <img src="<?php echo get_image($uid); ?>" />
         <p>Publica tus eventos o tareas proximas.</p>
 
-<!--
+
        <form action="" method="POST" enctype="multipart/form-data">
-			  <label for="imagen">Imagen:</label>
 			  <input type="file" name="imagen" id="imagen" />
 			  <input type="submit" name="subir" value="Subir"/>
 		 </form>
--->
 
 		 <form name="buscar" action="" method="get">
             <label>	<input type="text" name="search" placeholder="Buscar..."> </label>
