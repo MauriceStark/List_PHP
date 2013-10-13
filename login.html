@@ -1,14 +1,24 @@
 <html>
-    <head>
-        <title>Inicio de sesion</title>
-        <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
-    </head>
-    <body>
-        <form action="core/access.php" method="post">
-            <label>NickName:    <input type="text" name="NickName">     </label>
-            <label>Contraseña:  <input type="password" name="Password"> </label>
-            <input type="submit" value="Entrar" />
-            <p><a href="registro.html">Registrarse</a></p>
-        </form>
-    </body>
+   <head>
+		<title>Inicio de sesion</title>
+		<meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+		<link type="text/css" rel="stylesheet" href="css/style.css"/>
+	</head>
+	<body>
+
+		 <div id="login-form">
+        <h3>Login</h3>
+        <fieldset>
+            <form action="core/access.php" method="post">
+                <input type="text" name="NickName" required placeholder="User">
+                <input type="password" name="Password" required placeholder="Contraseña">
+                <input type="submit" value="Sign Up" />
+                <footer class="clearfix">
+                    <p><span class="info">R</span><a href="registro.html">Registrarse</a></p>
+                </footer>
+            </form>
+        </fieldset>
+    	</div> <!-- end login-form -->
+
+	</body>
 </html>
