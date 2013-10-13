@@ -75,13 +75,17 @@ function format_html($query){
 
 function get_image($uid){
 
-	$query = "SELECT imagen FROM imagenes WHERE uid = $uid ORDER BY iid DESC";
+	$query = "SELECT imagen FROM imagenes WHERE uid = $uid";
 
 	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
 	$datos 		= mysql_fetch_assoc( $resultado );
 	$ruta 		= "images/" . $datos['imagen'];
 
 	return $ruta;
+}
+
+function delete_image($uid){
+	mysql_query("DELETE FROM registro . imagenes  WHERE $uid  = $uid") or die( mysql_error() );
 }
 
 function upload_image($uid){
@@ -92,8 +96,8 @@ function upload_image($uid){
 
 	  //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
 	  $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
-	  //y que el tamano del archivo no exceda los 100kb
-	  $limite_kb = 100;
+	  //y que el tamano del archivo no exceda los 900kb
+	  $limite_kb = 900;
 
 	  if ( in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
 
@@ -108,8 +112,14 @@ function upload_image($uid){
 			//usamos la variable $resultado para almacenar el resultado del proceso de mover el archivo
 			$resultado = @move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
 			if ($resultado){
+
+			  //borra la imagen anterior que teniamos
+			  unlink("../" . get_image($uid) );
+			  //borra la ruta de la imagen de la base de datos
+			  delete_image($uid);
+
 			  $nombre = $_FILES['imagen']['name'];
-			  @mysql_query("INSERT INTO imagenes (imagen, uid) VALUES ('$nombre', '$uid')") ;
+			  @mysql_query("INSERT INTO imagenes (imagen, uid) VALUES ('$nombre', '$uid')");
 			  header("Location: ../home.php");
 			} else {
 			  echo "ocurrio un error al mover el archivo.";
