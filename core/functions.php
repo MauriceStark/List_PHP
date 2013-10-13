@@ -66,9 +66,9 @@ function format_html($query){
 
 		$output .=  "<p>". $datos['texto'] . "</p>" .
 						"<p>". $datos['fecha'] . "</p><br>
-						 <a href='core/delete.php?pid=$pid'>	Eliminar 	</a>
-						 <a href='core/disable.php?pid=$pid'>	Desabilitar </a>
-						 <a href='core/enable.php?pid=$pid'>	Habilitar 	</a>";
+						 <a href='core/delete.php?pid=$pid' 	id='delete'>	Eliminar 	</a>
+						 <a href='core/disable.php?pid=$pid'	id='disable'>	Desabilitar </a>
+						 <a href='core/enable.php?pid=$pid'  	id='enable'>	Habilitar 	</a>";
 	}
 	return $output;
 }
@@ -104,10 +104,6 @@ function upload_image($uid){
  		//esta es la ruta donde copiaremos la imagen
 		 $ruta = "../images/" . $_FILES['imagen']['name'];
 
-		 //comprobamos si este archivo existe para no volverlo a copiar.
-
-		 if (!file_exists($ruta)){
-
 			//aqui movemos el archivo desde la ruta temporal a nuestra ruta
 			//usamos la variable $resultado para almacenar el resultado del proceso de mover el archivo
 			$resultado = @move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
@@ -124,9 +120,6 @@ function upload_image($uid){
 			} else {
 			  echo "ocurrio un error al mover el archivo.";
 			}
-		 } else {
-			echo $_FILES['imagen']['name'] . ", este archivo existe";
-		 }
 	  } else {
 		 echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
 	  }

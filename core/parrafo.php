@@ -21,7 +21,7 @@
             if( !empty($error) ){
                 echo "Ha habido un error al insertar los valores. $error";
             } else {
-                echo "Los datos han sido introducidos satisfactoriamente" . $sql;
+                //echo "Los datos han sido introducidos satisfactoriamente" . $sql;
             }
 
         }else {
