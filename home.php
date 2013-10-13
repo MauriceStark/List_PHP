@@ -15,30 +15,33 @@
     	<header>
     		<div class="container">
     			<div class="logo">List</div>
-    			<a href="core/logout.php" class="logout">Salir</a>
+    			<a href="core/logout.php" class="logout">Log Out</a>
 
     			<form name="buscar" action="" method="get">
 					<input type="text" name="search" placeholder="Buscar...">
 					<input type="submit" value="Buscar">
 				</form>
+    			<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
+			  		<input type="file" 	name="imagen" id="imagen" />
+			  		<input type="submit" 	name="subir" value="Subir"/>
+				</form>
     		</div>
     	</header>
 
 		<div class="container">
+			<p class="fixed-header"></p>
+
 			<h1>Bienvenido  <?php echo $user ?>!</h1>
 			<img src="<?php echo get_image($uid); ?>" class="avatar" />
 			<p>Publica tus eventos o tareas proximas.</p>
 
-			<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
-			  <input type="file" 	name="imagen" id="imagen" />
-			  <input type="submit" 	name="subir" value="Subir"/>
-			</form>
-
-			<form name="form" action=""  onsubmit="enviarDatos(); return false">
-				<input type="texto"  name="Parrafo" placeholder="Escribe tu evento..." />
-				<input type="date" 	name="Fecha">
-				<input type="submit" value="Publicar">
-			</form>
+			<div class="form-event">
+				<form name="form" action=""  onsubmit="enviarDatos(); return false">
+					<textarea  type="text" maxlength="250" name="Parrafo" placeholder="Escribe tu evento..." /></textarea>
+					<input type="date" 	name="Fecha">
+					<input type="submit" value="Publicar">
+				</form>
+			</div>
 
 			<div id="resultado"> <!-- Div donde se mostraran los resultados mediante ajax-->
 				<?php

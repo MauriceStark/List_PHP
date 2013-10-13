@@ -38,7 +38,7 @@
             set_message_error("El nombre de usuario o la contraseña no son correctos.");
         }
     }else{
-         set_message_error("El nombre de usuario o la contraseña no son correctos.");
+         set_message_error("El nombre de usuario o la contraseña no son correctos.");//el usuario no existe
     }
 
     mysql_close($conexion);

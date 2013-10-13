@@ -22,7 +22,7 @@ function set_message_error($error){
 
 	echo"<script>
 		  alert(" . "'" .$error ."'". ");
-		  window.location.href=\"../login.html\"
+		  window.location.href=\"../home.php\"
 	 </script>";
 
 }
@@ -64,23 +64,33 @@ function format_html($query){
 	while ($datos = @mysql_fetch_assoc($resultado) ){
 		$pid 		= $datos['pid'];
 
-		$output .=  "<p>". $datos['texto'] . "</p>" .
-						"<p>". $datos['fecha'] . "</p><br>
-						 <a href='core/delete.php?pid=$pid' 	class='delete'>	Eliminar 	</a>
-						 <a href='core/disable.php?pid=$pid'	class='disable'>	Desabilitar </a>
-						 <a href='core/enable.php?pid=$pid'  	class='enable'>	Habilitar 	</a>";
+		$output .=  "<div class='content-vent'>" .
+							"<p>"
+								. $datos['texto'] .
+							"</p>
+							 <h5>"
+								. $datos['fecha'] .
+							 "</h5>
+							 <a href='core/delete.php?pid=$pid' 	class='delete'>	Eliminar 	</a>
+							 <a href='core/disable.php?pid=$pid'	class='disable'>	Desabilitar </a>
+							 <a href='core/enable.php?pid=$pid'  	class='enable'>	Habilitar 	</a>
+						 </div>";
 	}
 	return $output;
 }
 
 function get_image($uid){
 
-	$query = "SELECT imagen FROM imagenes WHERE uid = $uid";
-
+	$query 		= "SELECT imagen FROM imagenes WHERE uid = $uid";
 	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
 	$datos 		= mysql_fetch_assoc( $resultado );
-	$ruta 		= "images/" . $datos['imagen'];
+	$rows_image = mysql_num_rows( $resultado ); //devuelve el numero de filas de la consulta
 
+	if($rows_image != 0){
+		$ruta 	= "images/" . $datos['imagen'];
+	}else{
+		$ruta 	= "images/default-avatar.png";
+	}
 	return $ruta;
 }
 
@@ -91,7 +101,7 @@ function delete_image($uid){
 function upload_image($uid){
 	//comprobamos si ha ocurrido un error.
 	if ($_FILES["imagen"]["error"] > 0){
-	  echo "ha ocurrido un error";
+	  set_message_error("ha ocurrido un error, intentalo mas tarde.");
 	} else {
 
 	  //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
@@ -109,19 +119,22 @@ function upload_image($uid){
 			$resultado = @move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
 			if ($resultado){
 
-			  //borra la imagen anterior que teniamos
-			  unlink("../" . get_image($uid) );
-			  //borra la ruta de la imagen de la base de datos
-			  delete_image($uid);
+			  //verificamos si la imagen que tiene no es la default para no borrarla de la carpeta
+			  if(get_image($uid) != "images/default-avatar.png"){
+				  //borra la imagen anterior que teniamos
+				  unlink("../" . get_image($uid) );
+				  //borra la ruta de la imagen de la base de datos
+				  delete_image($uid);
+			  }
 
 			  $nombre = $_FILES['imagen']['name'];
 			  @mysql_query("INSERT INTO imagenes (imagen, uid) VALUES ('$nombre', '$uid')");
 			  header("Location: ../home.php");
 			} else {
-			  echo "ocurrio un error al mover el archivo.";
+			  set_message_error("Ocurrio un error al mover el archivo.");
 			}
 	  } else {
-		 echo "archivo no permitido, es tipo de archivo prohibido o excede el tamano de $limite_kb Kilobytes";
+	  	 set_message_error("Archivo no permitido, es tipo de archivo prohibido o excede los $limite_kb Kilobytes.");
 	  }
 	}
 }
