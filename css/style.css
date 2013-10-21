@@ -1,11 +1,45 @@
+@import url(http://fonts.googleapis.com/css?family=Lato);
+
 /* CSS Document */
 
+::-webkit-scrollbar {
+  width: 11px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2eb398;
+}
+
+::-moz-selection {
+  background-color: #2eb398;
+  color: #fff;
+}
+
+::selection {
+  background-color: #2eb398;
+  color: #fff;
+}
+
 body {
+  font-family: 'Lato', Calibri, Arial, sans-serif;
   background: #eaeaea;
+  font-size: 14px;
   color: #999;
-  font: 100%/1.5em sans-serif;
   margin: 0;
   padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #329dc4;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  color: #2eb398;
+}
+
+a:hover {
+  color: #e76049;
 }
 
 header {
@@ -23,7 +57,7 @@ header {
 }
 
 .avatar {
-  border: 20px solid rgba(0, 0, 0, 0.1);
+  border: 15px solid #2eb398;
   width: 100px;
   height: 100px;
   border-radius: 100%;
@@ -35,15 +69,63 @@ header {
   margin: 0px auto;
 }
 
-.content-vent {
+.logo {
+  color: white;
+  font-size: 52px;
+  display: inline;
+  float: left;
+  margin-right: 20px;
+}
+
+.primary {
+  width: 200px;
+  position: relative;
+  float: left;
+}
+
+.second {
+  width: 760px;
+  position: relative;
+  float: right;
+}
+
+.search {
+  display: inline;
+  float: right;
+}
+
+.file_upload:before {
+  content: 'Imagen';
+  position: relative;
+  left: 50px;
+  right: 0;
+  text-align: center;
+  cursor: pointer;
+}
+
+.file_upload input {
+  position: relative;
+  height: 30px;
+  width: 50px;
+  display: inline;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.error-parrafo {
+  color: #EB4D75;
+  font-size: 23px;
+}
+
+.content-event {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.content-vent p {
+.content-event p {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
-.content-vent h5 {
+.content-event h5 {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -60,24 +142,118 @@ header {
   resize: none;
 }
 
+textarea,
+input[type="text"],
+input[type="password"],
+input[type="datetime"],
+input[type="datetime-local"],
+input[type="date"],
+input[type="month"],
+input[type="time"],
+input[type="week"],
+input[type="number"],
+input[type="email"],
+input[type="url"],
+input[type="search"],
+input[type="tel"],
+input[type="color"],
+.uneditable-input {
+  background-color: #ffffff;
+  border: 2px solid #cccccc;
+  padding: 6px 5px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: border linear .2s, -webkit-box-shadow linear .2s;
+  transition: border linear .2s, box-shadow linear .2s;
+  outline: none;
+  border-radius: 2px;
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  background: #fff;
+  border-color: #2eb398;
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+select:focus,
+input[type="file"]:focus,
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: none;
+  border: 2px solid #2eb398;
+}
+
+input[type="submit"],
+input[type="image"] {
+  font-size: 13px;
+  font-weight: 400;
+  font-family: "Oswald", sans-serif;
+  padding: 5px 22px 10px;
+  margin-bottom: 3px;
+  display: inline-block;
+  cursor: pointer;
+  border: 0;
+  background: #2eb398;
+  color: #fff;
+  text-transform: uppercase;
+  border-radius: 3px;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+  -webkit-box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.1);
+  box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.1);
+  appearance: none;
+}
+
+input[type="submit"]:hover,
+input[type="image"]:hover {
+  color: #fff;
+  background: #36c3a6;
+}
+
+input[type="submit"]:active,
+input[type="image"]:active {
+  background: #2d9a83;
+}
+
+input[type="image"] {
+  background: #2d9a83;
+  color: #2d9a83;
+}
+
 /* ---------- GENERAL ---------- */
 
 h3 {
   margin: 0;
 }
 
-a {
-  color: #999;
-  text-decoration: none;
-}
-
-a:hover {
-  color: #1dabb8;
-}
-
 fieldset {
   border: none;
   margin: 0;
+}
+
+fieldset a {
+  color: #999;
+}
+
+fieldset a:hover {
+  color: #1dabb8;
 }
 
 input {

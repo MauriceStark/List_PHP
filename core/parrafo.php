@@ -25,7 +25,7 @@
             }
 
         }else {
-            echo "Error, no ha introducido todos los datos";
+            echo "<div class='error-parrafo'>Error, no ha introducido todos los datos</div>";
         }
         
        print get_content($uid);

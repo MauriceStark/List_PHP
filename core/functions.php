@@ -64,7 +64,7 @@ function format_html($query){
 	while ($datos = @mysql_fetch_assoc($resultado) ){
 		$pid 		= $datos['pid'];
 
-		$output .=  "<div class='content-vent'>" .
+		$output .=  "<div class='content-event'>" .
 							"<p>"
 								. $datos['texto'] .
 							"</p>
