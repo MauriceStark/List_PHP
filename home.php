@@ -15,7 +15,6 @@
     	<header>
     		<div class="container">
     			<div class="logo">List </div>
-    			<a href="core/logout.php" class="logout">Log Out</a>
 
     			<div class="search">
     				<form name="buscar" action="" method="get">
@@ -47,7 +46,7 @@
 						<input type="submit" 	name="subir" value="Subir"/>
 					</form>
 				</div>
-
+				<a href="core/logout.php" class="logout">Log Out</a>
 			</div>
 
 			<div class="second"><!-- Div secondario parte derecha-->

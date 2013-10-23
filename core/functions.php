@@ -34,7 +34,7 @@ function set_message_error($error){
 */
 function get_content($uid){
 	$query = "SELECT texto,pid,fecha FROM parrafos WHERE uid = $uid ORDER BY pid DESC";
-	return format_html($query) == "" ? "Publica un evento." : format_html($query);
+	return format_html($query) == "" ? "<div class='empty-event'>Publica un evento.</div>" : format_html($query);
 }
 
 /**
@@ -46,7 +46,7 @@ function get_search($uid,$search){
 	$query = "SELECT texto,uid,pid,fecha FROM parrafos WHERE ( texto LIKE '%".$search."%' OR fecha LIKE '%".$search."%' ) AND uid = $uid ORDER BY pid DESC";
 
 	$search_result  = '<a class="back-search" href="home.php">Ver todos </a>';
-	$search_result .= format_html($query) == "" ? "No tines eventos" : format_html($query);
+	$search_result .= format_html($query) == "" ? "<div class='empty-event'>No tines eventos '$search'</div>" : format_html($query);
 
 	return $search_result;
 }
