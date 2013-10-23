@@ -183,14 +183,15 @@ input[type="image"]{
 }
 
 .primary{
-	width:260px;
+	width:255px;
+	height:500px;;
 	position:relative;
 	float:left;
 	background-color:rgba(0, 0, 0, 0.1);
+	display:inline-table;
 }
 .second{
 	width:700px;
-	height:100%;
 	position:relative;
 	float:right;
 }
@@ -216,10 +217,13 @@ input[type="image"]{
 .avatar{
 	position:relative;
 	img{
-		border: 15px solid $color_primary;
-		width:100px;
-		height:100px;
+		position:relative;
+		border: 8px solid #1bbc9a;
+		width: 120px;
+		height: 120px;
 		border-radius: 100%;
+		left: 25%;
+		margin-top:10px;
 	}
 }
 
