@@ -5,7 +5,7 @@
 ?>
 <html>
     <head>
-        <title> <?php echo $user ?> | List </title>
+        <title> <?php print $user ?> | List </title>
         <script language="JavaScript" type="text/javascript" src="ajax.js"></script>
         <link type="text/css" rel="stylesheet" href="css/style.css"/>
         <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
@@ -30,20 +30,24 @@
 		<div class="container">
 			<p class="fixed-header"></p>
 
-			<h1>Bienvenido  <?php echo $user ?>!</h1>
+			<h1>Bienvenido  <?php print $user ?>!</h1>
+			<p>Publica tus eventos o tareas proximas.</p>
 
 			<div class="primary">
-				<img src="<?php echo get_image($uid); ?>" class="avatar" />
-				<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
-					<div class="file_upload">
-						<input type="file" 	name="imagen"/>
-					</div>
-					<input type="submit" 	name="subir" value="Subir"/>
-				</form>
+
+				<div class="avatar">
+					<img src="<?php print get_image($uid); ?>" />
+					<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
+						<div class="file_upload">
+							<input type="file" 	name="imagen"/>
+						</div>
+						<input type="submit" 	name="subir" value="Subir"/>
+					</form>
+				</div>
+
 			</div>
 
 			<div class="second">
-				<p>Publica tus eventos o tareas proximas.</p>
 
 				<div class="form-event">
 					<form name="form" action=""  onsubmit="enviarDatos(); return false">

@@ -2,7 +2,28 @@
 @import url(http://fonts.googleapis.com/css?family=Lato);
 
 /* CSS Document */
-// paleta de colores realpixels.png
+
+/*
+	Paleta de colores realpixels
+	rojo #f15062
+	verde claro #1bbc9a
+	verde #1dae90
+	backgraund #394c5a
+	negro #42454f
+	azul #1dabb8
+	naranja #e76049
+*/
+
+$color_primary:	#e76049;
+$color_secondary: #2eb398;
+$color_base:		#394c5a;
+$color_fonts:		#2eb398;
+$background: 		#eaeaea;
+
+@mixin hover($color) {
+  background: saturate( lighten( $color, 5%), 2%);
+}
+
 $header_height:70px;
 
 ::-webkit-scrollbar {
@@ -11,19 +32,19 @@ $header_height:70px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #2eb398;
+  background: $color_primary;
 }
 
 ::selection {
-  background-color: #2eb398;
+  background-color: $color_primary;
   color: #fff;
 }
 
 body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
-	background: #eaeaea;
+	background: $background;
 	font-size:14px;
-	color: #999;
+	color: #42454f;
 	margin:0;
 	padding:0;
 }
@@ -32,7 +53,7 @@ a {
 	text-decoration: none;
 	color:rgb(50, 157, 196);
 	transition: all 0.4s ease-in-out;
-	color: #2eb398;
+	color: $color_primary;
 
 	&:hover{
 		color: #e76049;
@@ -51,13 +72,6 @@ header{
 	position:relative;
 	width:100%;
 	height:$header_height;
-}
-
-.avatar{
-	border: 15px solid #2eb398;
-	width:100px;
-	height:100px;
-	border-radius: 100%;
 }
 
 #resultado{
@@ -96,7 +110,7 @@ header{
 	float:left;
 }
 .second{
-	width:760px;
+	max-width:760px;
 	position:relative;
 	float:right;
 }
@@ -107,7 +121,7 @@ header{
 }
 
 .file_upload:before {
-	content: 'Imagen';
+	content: 'Cambiar';
 	position: relative;
 	left: 50px;
 	right: 0;
@@ -117,11 +131,21 @@ header{
 
 .file_upload input {
 	position: relative;
-	height: 30px;
-	width: 50px;
+	width:70px;
+	height:30px;
 	display: inline;
 	cursor: pointer;
 	opacity:0;
+}
+
+.avatar{
+	position:relative;
+	img{
+		border: 15px solid $color_primary;
+		width:100px;
+		height:100px;
+		border-radius: 100%;
+	}
 }
 
 .error-parrafo{
@@ -147,10 +171,25 @@ header{
 	height:130px;
 	position:relative;
 
+	&:after{
+		content: "";
+		position: absolute;
+		height: 40px;
+		width: 40px;
+		top: -7%;
+		left: -69px;
+		transform: rotate(-90deg);
+		width: 0;
+		border-left:30px solid transparent;
+		border-right: 30px solid transparent;
+		border-bottom: 40px solid rgba(0,0,0,.1);
+	}
+
 	form textarea{
 		width:400px;
 		height: 100px;
 		resize:none;
+
 	}
 }
 
@@ -166,14 +205,14 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 
 textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
 	background: #fff;
-	border-color: #2eb398;
+	border-color: $color_primary;
 	outline: 0;
 	box-shadow: none;
 }
 
 select:focus, input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus {
 	outline: none;
-	border: 2px solid #2eb398;
+	border: 2px solid $color_primary;
 }
 
 input[type="submit"],input[type="image"]{
@@ -185,7 +224,7 @@ input[type="submit"],input[type="image"]{
 	display: inline-block;
 	cursor: pointer;
 	border: 0;
-	background: #2eb398;
+	background: $color_primary;
 	color: #fff;
 	text-transform: uppercase;
 	border-radius: 3px;
@@ -195,7 +234,7 @@ input[type="submit"],input[type="image"]{
 
 	&:hover{
 		color: #fff;
-		background: #36c3a6;
+		@include hover($color_primary);
 	}
 	&:active{
 		background: #2d9a83;
@@ -208,7 +247,6 @@ input[type="image"]{
 }
 
 /* ---------- GENERAL ---------- */
-
 
 h3 { margin: 0; }
 
@@ -238,7 +276,6 @@ input {
 	}
 }
 
-
 .clearfix {
 	zoom: 1;
 
@@ -257,7 +294,7 @@ input {
 	width: 300px;
 
 	h3{
-		background-color: #282830;
+		background-color: $color_base;
 		border-radius: 5px 5px 0 0;
 		color: #fff;
 		font-size: 14px;
@@ -308,17 +345,17 @@ input {
 	}
 
 	input[type = "submit"] {
-		background: #1dabb8;
+		background: $color_primary;
 		border-radius: 3px;
 		color: #fff;
 		float: right;
 		font-weight: bold;
 		margin-top: 20px;
 		padding: 12px 20px;
-	}
 
-	input[type = "submit"]:hover {
-		background: #198d98;
+		&:hover {
+			@include hover($color_primary);
+		}
 	}
 
 	footer {
