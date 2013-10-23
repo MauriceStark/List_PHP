@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(fonts/css/fontello.css);
 
 /* CSS Document */
 
@@ -10,18 +11,23 @@
 	verde #1dae90
 	backgraund #394c5a
 	negro #42454f
-	azul #1dabb8
+	azul-verde #1dabb8
+	azul rgb(50, 157, 196)
 	naranja #e76049
 */
 
-$color_primary:	#e76049;
+$color_primary:	#1bbc9a;
 $color_secondary: #2eb398;
-$color_base:		#394c5a;
+$color_base:		rgba(45, 59, 77,1);
 $color_fonts:		#2eb398;
 $background: 		#eaeaea;
 
 @mixin hover($color) {
-  background: saturate( lighten( $color, 5%), 2%);
+  background: saturate( lighten( $color, 5%), 5%);
+}
+
+@mixin active($color) {
+  background: desaturate( darken( $color, 10%), 15%);
 }
 
 $header_height:70px;
@@ -49,6 +55,14 @@ body {
 	padding:0;
 }
 
+hr {
+	margin: 20px 0px 20px 0px;
+	border: 0;
+	border-top: 1px solid $color_primary;
+	height: 0;
+	box-sizing: content-box;
+}
+
 a {
 	text-decoration: none;
 	color:rgb(50, 157, 196);
@@ -62,16 +76,85 @@ a {
 
 header{
 	position:fixed;
-	background-color:rgba(45, 59, 77,1);
+	background-color:$color_base;
 	width:100%;
 	z-index:2;
 	height:$header_height;
+	border-top:3px solid $color_primary;
+}
+
+h1,p{
+	margin:0px;
+	padding:0px;
+}
+
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
+	background-color: #ffffff;
+	border: 2px solid #cccccc;
+	padding: 6px 8px;
+	box-shadow: none;
+	transition: border linear .2s, box-shadow linear .2s;
+	outline:none;
+	border-radius:2px;
+	background: #fff;
+	font-size: 13px;
+	font-weight: 400;
+	font-family: "Oswald", sans-serif;
+}
+
+textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
+	border-color: $color_primary;
+	outline: 0;
+	box-shadow: none;
+}
+
+select:focus, input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus {
+	outline: none;
+	border: 2px solid $color_primary;
+}
+
+input[type="submit"],input[type="image"]{
+	font-size: 13px;
+	font-weight: 400;
+	font-family: "Oswald", sans-serif;
+	padding: 5px 22px 10px;
+	margin-bottom: 3px;
+	display: inline-block;
+	cursor: pointer;
+	border: 0;
+	background: $color_primary;
+	color: #fff;
+	text-transform: uppercase;
+	border-radius: 3px;
+	transition: all 0.4s ease-in-out;
+	box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.1);
+	appearance: none;
+
+	&:hover{
+		color: #fff;
+		@include hover($color_primary);
+	}
+	&:active{
+		@include active($color_primary);
+	}
+}
+
+input[type="image"]{
+	background: #2d9a83;
+	color:#2d9a83;
+}
+
+.welcome{
+	padding-top:20px;
+	p{color:$color_primary;}
 }
 
 .fixed-header{
 	position:relative;
 	width:100%;
 	height:$header_height;
+	margin:0px;
+	padding:0px;
 }
 
 #resultado{
@@ -85,8 +168,8 @@ header{
 }
 
 .logout{
-}
 
+}
 
 .logo{
 	color:white;
@@ -96,7 +179,28 @@ header{
 	margin-right:20px;
 }
 
-.back-search{}
+.search{
+	position:relative;
+	float:right;
+	margin-top:20px;
+
+	input[type="text"]{
+		@include hover($color_base);
+		border: none;
+		transition:all .3s linear;
+		color:$color_primary;
+		position:relative;
+		top:0px;
+		width:200px;
+
+		&::-webkit-input-placeholder { //modifica el texto del placeholder
+			color:white;
+		}
+	}
+	input[type="submit"]{
+		padding: 7px 15px 7px;
+	}
+}
 
 .enable{}
 
@@ -105,18 +209,15 @@ header{
 .delete{}
 
 .primary{
-	width:200px;
+	width:260px;
 	position:relative;
 	float:left;
+	background-color:rgba(0, 0, 0, 0.1);
 }
 .second{
-	max-width:760px;
+	max-width:700px;
+	height:100%;
 	position:relative;
-	float:right;
-}
-
-.search{
-	display:inline;
 	float:right;
 }
 
@@ -156,94 +257,72 @@ header{
 .content-event{
 	background-color:rgba(0,0,0,.1);
 
-	p{
-		background-color:rgba(0,0,0,.1);
-	}
+	p{background-color:rgba(0,0,0,.1);}
 
-	h5{
-		background-color:rgba(0,0,0,.1);
-	}
+	h5{background-color:rgba(0,0,0,.1);}
 }
 
 .form-event{
-	background-color:rgba(0,0,0,.1);
-	width:100%;
-	height:130px;
+	background-color:$color_primary;
+	width:90%;
+	height:122px;
 	position:relative;
+	margin:0px 0px 20px 0px;
+	border-radius:3px;
+	padding:5px;
 
+	form{
+		padding:0px;
+		margin:0px;
+		height:100%;
+	}
+
+	form textarea{
+		font-size:15px;
+		width:100%;
+		border: none;
+		height: 65px;
+		resize:none;
+		position:relative;
+		display:block;
+		margin-bottom:20px;
+	}
+	input[type="date"]{
+		padding: 2px 5px 2px;
+		border-radius: 3px;
+		border:none;
+		box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+	}
+	input[type="submit"]{
+		font-size: 13px;
+		padding: 10px 35px 10px;
+		margin-bottom: 3px;
+		background: $color_primary;
+		border-radius: 3px;
+		box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9);
+		float:right;
+
+		&:hover{
+			color: #fff;
+			@include hover($color_primary);
+		}
+		&:active{
+			@include active($color_primary);
+		}
+	}
 	&:after{
 		content: "";
 		position: absolute;
 		height: 40px;
 		width: 40px;
-		top: -7%;
-		left: -69px;
+		top: 0%;
+		left: -36px;
 		transform: rotate(-90deg);
 		width: 0;
-		border-left:30px solid transparent;
-		border-right: 30px solid transparent;
-		border-bottom: 40px solid rgba(0,0,0,.1);
+		border-left:10px solid transparent;
+		border-right: 10px solid transparent;
+		border-bottom: 15px solid $color_primary;
 	}
-
-	form textarea{
-		width:400px;
-		height: 100px;
-		resize:none;
-
-	}
-}
-
-textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
-	background-color: #ffffff;
-	border: 2px solid #cccccc;
-	padding: 6px 5px;
-	box-shadow: none;
-	transition: border linear .2s, box-shadow linear .2s;
-	outline:none;
-	border-radius:2px;
-}
-
-textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, .uneditable-input:focus {
-	background: #fff;
-	border-color: $color_primary;
-	outline: 0;
-	box-shadow: none;
-}
-
-select:focus, input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus {
-	outline: none;
-	border: 2px solid $color_primary;
-}
-
-input[type="submit"],input[type="image"]{
-	font-size: 13px;
-	font-weight: 400;
-	font-family: "Oswald", sans-serif;
-	padding: 5px 22px 10px;
-	margin-bottom: 3px;
-	display: inline-block;
-	cursor: pointer;
-	border: 0;
-	background: $color_primary;
-	color: #fff;
-	text-transform: uppercase;
-	border-radius: 3px;
-	transition: all 0.4s ease-in-out;
-	box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.1);
-	appearance: none;
-
-	&:hover{
-		color: #fff;
-		@include hover($color_primary);
-	}
-	&:active{
-		background: #2d9a83;
-	}
-}
-
-input[type="image"]{
-	background: #2d9a83;
-	color:#2d9a83;
 }
 
 /* ---------- GENERAL ---------- */
@@ -302,7 +381,6 @@ input {
 		text-align: center;
 		text-transform: uppercase;
 	}
-
 	fieldset {
 		background: #fff;
 		border-radius: 0 0 5px 5px;
@@ -321,11 +399,9 @@ input {
 		transform: rotate(45deg);
 		width: 8px;
 	}
-
 	input {
 		font-size: 14px;
 	}
-
 	input[type = "text"],
 	input[type = "email"],
 	input[type = "password"] {
@@ -333,17 +409,14 @@ input {
 		padding: 12px 10px;
 		width: 238px;
 	}
-
 	input[type = "text"],
 	input[type = "email"] {
 		border-radius: 3px 3px 0 0;
 	}
-
 	input[type = "password"] {
 		border-top: none;
 		border-radius: 0px 0px 3px 3px;
 	}
-
 	input[type = "submit"] {
 		background: $color_primary;
 		border-radius: 3px;
@@ -357,7 +430,6 @@ input {
 			@include hover($color_primary);
 		}
 	}
-
 	footer {
 		font-size: 12px;
 		margin-top: 16px;

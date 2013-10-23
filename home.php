@@ -19,7 +19,7 @@
 
     			<div class="search">
     				<form name="buscar" action="" method="get">
-						<input type="text" name="search" placeholder="Buscar...">
+						<input type="text" name="search" placeholder="Buscar..."class="the-icons">
 						<input type="submit" value="Buscar">
 					</form>
     			</div>
@@ -30,10 +30,13 @@
 		<div class="container">
 			<p class="fixed-header"></p>
 
-			<h1>Bienvenido  <?php print $user ?>!</h1>
-			<p>Publica tus eventos o tareas proximas.</p>
+			<div class="welcome">
+				<h1>Bienvenido  <?php print $user ?>!</h1>
+				<p>Publica tus eventos o tareas proximas.</p>
+				<hr>
+			</div>
 
-			<div class="primary">
+			<div class="primary"><!-- Div primario parte izquierda-->
 
 				<div class="avatar">
 					<img src="<?php print get_image($uid); ?>" />
@@ -47,7 +50,7 @@
 
 			</div>
 
-			<div class="second">
+			<div class="second"><!-- Div secondario parte derecha-->
 
 				<div class="form-event">
 					<form name="form" action=""  onsubmit="enviarDatos(); return false">
