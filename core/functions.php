@@ -22,13 +22,18 @@ function content_delete(){
 }
 
 function count_status($uid,$status){
-	$query 		= "SELECT * FROM parrafos WHERE (uid = $uid AND status = $status)";
+	$query 		= "SELECT status FROM parrafos WHERE (uid = $uid AND status = $status)";
 	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
-	$datos 		= mysql_fetch_assoc( $resultado );
-	$rows_image = mysql_num_rows( $resultado ); //devuelve el numero de filas de la consulta
+	$datos 		= mysql_fetch_array( $resultado );//Recupera una fila de resultados como un array asociativo
+	$count 		= mysql_num_rows( $resultado ); //Obtiene el numero de filas de la consulta
 	
-	$count = $rows_image;
 	return $count;
+}
+
+function percent_complete($uid){
+	$total_events = count_status($uid,1) + count_status($uid,0); // suma el total de eventos 
+	$percent = (count_status($uid,0) / $total_events ) * 100; // saca el porcentaje de eventos realizados
+	return round($percent);
 }
 
 function set_message_error($error){

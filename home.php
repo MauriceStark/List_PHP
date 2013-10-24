@@ -42,6 +42,7 @@
 					
 					<h2>Pendientes <?php print count_status($uid,1) ?></h2>
 					<h2>Completados <?php print count_status($uid,0) ?></h2>
+					<h2>Porcentaje <?php print percent_complete($uid)?>%</h2>
 					
 					<a href="core/logout.php" class="logout">Log Out</a>
 					<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
