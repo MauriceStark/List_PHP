@@ -24,15 +24,16 @@ function content_delete(){
 function count_status($uid,$status){
 	$query 		= "SELECT status FROM parrafos WHERE (uid = $uid AND status = $status)";
 	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
-	$datos 		= mysql_fetch_array( $resultado );//Recupera una fila de resultados como un array asociativo
-	$count 		= mysql_num_rows( $resultado ); //Obtiene el numero de filas de la consulta
+	$datos 		= mysql_fetch_array( $resultado );	//Recupera una fila de resultados como un array asociativo
+	$count 		= mysql_num_rows( $resultado ); 		//Obtiene el numero de filas de la consulta
 	
 	return $count;
 }
 
 function percent_complete($uid){
-	$total_events = count_status($uid,1) + count_status($uid,0); // suma el total de eventos 
-	$percent = (count_status($uid,0) / $total_events ) * 100; // saca el porcentaje de eventos realizados
+	$total_events = count_status($uid,1) + count_status($uid,0); 	// suma el total de eventos 
+	$total_events = $total_events == 0 ? 1 : $total_events; 			// seguridad que evita una division entre 0
+	$percent = (count_status($uid,0) / $total_events ) * 100; 		// saca el porcentaje de eventos realizados
 	return round($percent);
 }
 
@@ -117,19 +118,19 @@ function delete_image($uid){
 }
 
 function upload_image($uid){
-	//comprobamos si ha ocurrido un error.
+
 	if ($_FILES["imagen"]["error"] > 0){
 	  set_message_error("ha ocurrido un error, intentalo mas tarde.");
 	} else {
 
-	  //ahora vamos a verificar si el tipo de archivo es un tipo de imagen permitido.
+	  //Verificamos si el tipo de archivo es un tipo de imagen permitido.
 	  $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
-	  //y que el tamano del archivo no exceda los 900kb
+	  //Verificamos si el tamano del archivo no excede los 900kb
 	  $limite_kb = 900;
 
 	  if ( in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
 
- 		//esta es la ruta donde copiaremos la imagen
+ 		//Ruta donde copiaremos la imagen
 		 $ruta = "../images/" . $_FILES['imagen']['name'];
 
 			//aqui movemos el archivo desde la ruta temporal a nuestra ruta
@@ -137,11 +138,11 @@ function upload_image($uid){
 			$resultado = @move_uploaded_file($_FILES["imagen"]["tmp_name"], $ruta);
 			if ($resultado){
 
-			  //verificamos si la imagen que tiene no es la default para no borrarla de la carpeta
+			  //Verifica si la imagen que tiene no es la default para no borrarla de la carpeta
 			  if(get_image($uid) != "images/default-avatar.png"){
-				  //borra la imagen anterior que teniamos
+				  //borra la imagen anterior que tenia
 				  unlink("../" . get_image($uid) );
-				  //borra la ruta de la imagen de la base de datos
+				  //borra la ruta de la base de datos
 				  delete_image($uid);
 			  }
 
