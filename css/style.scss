@@ -7,7 +7,6 @@
 /*
 	Paleta de colores realpixels
 	rojo #f15062
-	verde claro #1bbc9a
 	verde #1dae90
 	backgraund #394c5a
 	negro #42454f
@@ -16,8 +15,8 @@
 	naranja #e76049
 */
 
-$color_primary:	#1bbc9a;
-$color_secondary: #2eb398;
+$color_primary:	#1dae90;
+$color_secondary: #f15062;
 $color_base:		rgba(45, 59, 77,1);
 $color_fonts:		#2eb398;
 $background: 		#eaeaea;
@@ -83,7 +82,7 @@ header{
 	border-top:3px solid $color_primary;
 }
 
-h1,p{
+h1,h2,h3,h4,h5,p{
 	margin:0px;
 	padding:0px;
 }
@@ -233,11 +232,18 @@ input[type="image"]{
 }
 
 .content-event{
-	background-color:rgba(0,0,0,.1);
+	background-color:$color_base;
+	margin-bottom:10px;
+	border-radius:3px;
+	padding:10px;
 
-	p{background-color:rgba(0,0,0,.1);}
+	p{
+		color:white;
+	}
 
-	h5{background-color:rgba(0,0,0,.1);}
+	h5{
+		color:$color_secondary;
+	}
 }
 
 .form-event{

@@ -31,7 +31,7 @@
 
 			<div class="welcome">
 				<h1>Bienvenido  <?php print $user ?>!</h1>
-				<p>Publica tus eventos o tareas proximas.</p>
+				<p>Publica tus recordatorios, eventos o tareas proximas.</p>
 				<hr>
 			</div>
 
@@ -39,6 +39,11 @@
 
 				<div class="avatar">
 					<img src="<?php print get_image($uid); ?>" />
+					
+					<h2>Pendientes <?php print count_status($uid,1) ?></h2>
+					<h2>Completados <?php print count_status($uid,0) ?></h2>
+					
+					<a href="core/logout.php" class="logout">Log Out</a>
 					<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
 						<div class="file_upload">
 							<input type="file" 	name="imagen"/>
@@ -46,15 +51,14 @@
 						<input type="submit" 	name="subir" value="Subir"/>
 					</form>
 				</div>
-				<a href="core/logout.php" class="logout">Log Out</a>
+				
 			</div>
 
 			<div class="second"><!-- Div secondario parte derecha-->
 
 				<div class="form-event">
 					<form name="form" action=""  onsubmit="enviarDatos(); return false">
-						<textarea  type="text" maxlength="250" name="Parrafo" placeholder="Escribe tu evento...">
-						</textarea>
+						<textarea name="Parrafo" placeholder="Publica un recordatorio..."></textarea>
 						<input type="date" 	name="Fecha">
 						<input type="submit" value="Publicar">
 					</form>

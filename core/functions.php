@@ -11,11 +11,24 @@ function content_status($status){
 	mysql_query("UPDATE registro . parrafos SET status = $status WHERE pid = $pid") or die(mysql_error());
 	header("Location: ../home.php");
 }
-
-function content_delete($status){
+/**
+*Funcion para borrar un evento
+*		El pid a eliminar se obtiene por GET
+*/
+function content_delete(){
 	$pid= $_GET['pid'];
 	mysql_query("DELETE FROM registro . parrafos  WHERE  parrafos . pid  = $pid") or die(mysql_error());
 	header("Location: ../home.php");
+}
+
+function count_status($uid,$status){
+	$query 		= "SELECT * FROM parrafos WHERE (uid = $uid AND status = $status)";
+	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
+	$datos 		= mysql_fetch_assoc( $resultado );
+	$rows_image = mysql_num_rows( $resultado ); //devuelve el numero de filas de la consulta
+	
+	$count = $rows_image;
+	return $count;
 }
 
 function set_message_error($error){
