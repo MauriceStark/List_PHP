@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import url(http://fonts.googleapis.com/css?family=Lato);
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
 @import "fonts/css/fontello.css";
 
 /* CSS Document */
@@ -12,14 +13,15 @@
 	azul-verde #1dabb8
 	azul rgb(50, 157, 196)
 	naranja #e76049
-	rojo naranja F0544E
+	rojo naranja #F0544E
 */
 
-$color_primary:	#1dae90;
-$color_secondary: #f15062;
+$color_primary:	rgb(29, 174, 144);
+$color_secondary: rgb(50, 157, 196);
+$complementary: 	rgb(241, 80, 98);
 $color_base:		rgba(45, 59, 77,1);
-$color_fonts:		#2eb398;
-$background: 		#eaeaea;
+$color_fonts:		rgb(66, 69, 79);
+$background: 		rgb(234, 234, 234);
 
 @mixin hover($color) {
   background: saturate( lighten( $color, 5%), 5%);
@@ -37,7 +39,7 @@ $header_height:70px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: $color_primary;
+  background: $color_secondary;
 }
 
 ::selection {
@@ -47,11 +49,11 @@ $header_height:70px;
 
 *:focus { border: 0; outline: 0; }
 
-	body {
-	font-family: 'Lato', Calibri, Arial, sans-serif;
+body {
+	font-family: 'Roboto', sans-serif;
 	background: $background;
-	font-size:14px;
-	color: #42454f;
+	font-size: 62.5%; /* font-size 1em = 10px */
+	color: $color_fonts;
 	margin:0;
 	padding:0;
 }
@@ -99,7 +101,7 @@ textarea, input[type="text"], input[type="password"], input[type="datetime"], in
 	outline:none;
 	border-radius:2px;
 	background: #fff;
-	font-size: 13px;
+	font-size: 1.3em;
 	font-weight: 400;
 	font-family: "Oswald", sans-serif;
 }
@@ -111,7 +113,15 @@ input[type="image"]{
 
 .welcome{
 	padding-top:20px;
-	p{color:$color_primary;}
+	h1{
+		font-weight:100;
+		font-size:3em;
+	}
+	p{
+		color:$color_primary;
+		font-size:1.5em;
+		font-weight:100;
+	}
 }
 
 .fixed-header{
@@ -139,10 +149,11 @@ input[type="image"]{
 
 .logo{
 	color:white;
-	font-size:52px;
+	font-size:5.2em;
 	display:inline;
 	float:left;
 	margin-right:20px;
+	font-family: 'Lato', Calibri, Arial, sans-serif;
 }
 
 .search{
@@ -176,7 +187,7 @@ input[type="image"]{
 
 .empty-event{
 	text-align:center;
-	font-size:35px;
+	font-size:3.5em;
 	color:rgba(0,0,0,.2);
 }
 
@@ -194,7 +205,7 @@ input[type="image"]{
 
 .file_upload_button{
 	position:relative;
-	font-size: 11px;
+	font-size: 1.1em;
 	font-weight: 400;
 	width:100px;
 	font-family: "Oswald", sans-serif;
@@ -238,7 +249,7 @@ input[type="image"]{
 	
 	img{
 		position:relative;
-		border: 8px solid #1bbc9a;
+		border: 8px solid $color_primary;
 		width: 160px;
 		height: 160px;
 		border-radius: 50%;
@@ -249,11 +260,12 @@ input[type="image"]{
 
 .error-parrafo{
 	color:$color_secondary;
-	font-size:23px;
+	font-size:2.3em;
 }
 
 .content-event-enable,
 .content-event-disable{
+	font-size:1.4em;
 	margin-bottom:10px;
 	border-radius:3px;
 	padding:10px;
@@ -301,7 +313,7 @@ input[type="image"]{
 	}
 
 	form textarea{
-		font-size:15px;
+		font-size:1.5em;
 		width:100%;
 		border: none;
 		height: 65px;
@@ -317,7 +329,7 @@ input[type="image"]{
 		box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.9);
 	}
 	input[type="submit"]{
-		font-size: 13px;
+		font-size: 1.3em;
 		padding: 10px 35px 10px;
 		margin-bottom: 3px;
 		background: $color_primary;
@@ -355,7 +367,7 @@ select:focus, input[type="file"]:focus, input[type="radio"]:focus, input[type="c
 }
 
 input[type="submit"],input[type="image"]{
-	font-size: 13px;
+	font-size: 1.3em;
 	font-weight: 400;
 	font-family: "Oswald", sans-serif;
 	padding: 5px 22px 10px;
@@ -424,7 +436,8 @@ input {
 }
 /* ---------- BUTTON ENABLE/DISABLE---------- */
 
-.button-block {
+.button-canceled,
+.button-enable {
   width: 70px;
   height: 70px;
   border-radius: 100%; /* TODO: prefix */
@@ -432,9 +445,8 @@ input {
   position: relative;
   display: block;
   position: relative;
-  border: 35px solid $color_secondary;
   box-sizing: border-box;
-  transition: border 600ms ease-in-out;
+  transition: border 400ms ease-in-out;
   
   button {
 	  position: absolute;
@@ -450,41 +462,93 @@ input {
 }
 
 .mark {
-  background-color: #fff;
-  position: absolute;
-  height: 30px;
-  width: 4px;
-  display: block;
-  top: 0;
-  transition: all 600ms ease-in-out;
+	  position: absolute;
+	  display: block;
+	  top: 0;
+	  transition: all 400ms ease-in-out;
 }
 
-.x  { 
-  right: 14px; 
-  transform:rotate(45deg); /* TODO: prefix */
-}
-.xx { 
-  left: 12px; 
-  transform:rotate(-45deg); /* TODO: prefix */
-}
-
-.canceled  {
-  border-width: 4px;
-  border-color: $color_primary;
-  
-  .mark { background-color: $color_primary; }
-  .mark.x {
-  		right: 5px;
-  		top: -3px;
-		height: 35px;
+@mixin enable(){
+	.button-enable {
+		border: 35px solid $complementary;
+	
+		.mark { 	
+			background-color: #fff;
+			height: 30px;
+			width: 4px; 
+		} 
+		.x { 
+			right: 14px; 
+			transform:rotate(45deg); 
+		}
+		.xx { 
+			left: 12px; 
+			transform:rotate(-45deg); 
+		}
 	}
-	.mark.xx {
-	  height: 15px;
-	  top: 15px;
-	  left: 5px;
+	.button-enable:hover {
+		border: 4px solid $color_primary;	 
+		border-color: $color_primary;
+	  
+	  .mark { background-color: $color_primary; }
+	  .mark.x {
+			right: 5px;
+			top: -3px;
+			height: 35px;
+		}
+		.mark.xx {
+			height: 15px;
+			top: 15px;
+			left: 5px;
+		}		
 	}
 }
 
+@mixin disable(){
+	.button-canceled {
+	  border: 4px solid $color_primary;	 
+	  border-color: $color_primary;
+	  
+	  .mark { 
+	  	background-color: $color_primary; 
+	  	height: 30px;
+		width: 4px;
+	  }
+	  .mark.x {
+			right: 5px;
+			top: -3px;
+			height: 35px;
+			transform:rotate(45deg); 
+		}
+		.mark.xx {
+		  height: 15px;
+		  top: 15px;
+		  left: 5px;
+		  transform:rotate(-45deg); 
+		}		
+	}
+	.button-canceled:hover {
+		border: 35px solid $complementary;
+	
+		.mark { 
+	  		top: 0;	
+			background-color: #fff;
+			height: 30px;
+			width: 4px; 
+		} 
+		.x { 
+			right: 14px; 
+			transform:rotate(45deg); 
+		}
+		.xx { 
+			left: 12px; 
+			transform:rotate(-45deg); 
+		}
+	}
+}
+
+@include enable();
+@include disable();
 /* ---------- LOGIN-FORM ---------- */
 
 #login-form {
@@ -495,7 +559,7 @@ input {
 		background-color: $color_base;
 		border-radius: 5px 5px 0 0;
 		color: #fff;
-		font-size: 14px;
+		font-size: 1.4em;
 		padding: 20px;
 		text-align: center;
 		text-transform: uppercase;
@@ -519,7 +583,7 @@ input {
 		width: 8px;
 	}
 	input {
-		font-size: 14px;
+		font-size: 1.4em;
 	}
 	input[type = "text"],
 	input[type = "email"],
@@ -550,7 +614,7 @@ input {
 		}
 	}
 	footer {
-		font-size: 12px;
+		font-size: 1.2em;
 		margin-top: 16px;
 	}
 } // end #login-form
@@ -568,10 +632,6 @@ input {
 
 
 /*Percent circle*/
-// Colors
-$barColor: $color_secondary;
-$overlayColor: $background;
-$backColor: $color_base;
 
 /* -------------------------------------
  * Bar container
@@ -583,27 +643,33 @@ $backColor: $color_base;
   width: 100px;
   height: 100px;
   border-radius: 50%;
-  background-color: $barColor; // default 100%
-}
+  background-color: $color_secondary; // default 100%
+  
 /* -------------------------------------
  * Optional circulo central
- * ------------------------------------- */  
-.progress-radial .overlay{
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  background-color: $overlayColor;
-  border-radius: 50%;
-  margin-left: 20px;
-  margin-top: 20px;
-  text-align: center;
-  line-height: 60px;
-  font-size: 16px;
-} 
+ * ------------------------------------- */
+  .overlay{
+	  position: absolute;
+	  width: 60px;
+	  height: 60px;
+	  background-color: $color_base;
+	  border-radius: 50%;
+	  margin-left: 20px;
+	  margin-top: 20px;
+	  text-align: center;
+	  line-height: 60px;
+	  font-size: 2em;
+	  color:white;
+	} 
+}
+  
+
 /* -------------------------------------
  * Mixin for progress-% class
  * ------------------------------------- */
 
+$barColor: 	$color_secondary;
+$backColor: $color_base;
 $loops: 		100; //percent limit %
 $increment: 360 / $loops;
 $half: 		$loops / 2;

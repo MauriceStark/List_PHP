@@ -95,9 +95,9 @@ function format_html($query){
 	while ($datos = @mysql_fetch_assoc($resultado) ){
 		$pid = $datos['pid'];
 		
-		$class_status 	= event_status($pid) == 1 ? "content-event-enable" : "content-event-disable";
-		$class_enable 	= event_status($pid) == 1 ? "button-block" : "button-block canceled";
-		$url_status 	= event_status($pid) == 1 ? "core/disable.php?pid=$pid" : "core/enable.php?pid=$pid";
+		$class_status 	= event_status($pid) == 1 ? "content-event-enable" 		: "content-event-disable";
+		$class_enable 	= event_status($pid) == 1 ? "button-enable" 					: "button-canceled";
+		$url_status 	= event_status($pid) == 1 ? "core/disable.php?pid=$pid" 	: "core/enable.php?pid=$pid";
 		
 		$output .=  "<div class='$class_status'>" .
 							"<a href='core/delete.php?pid=$pid' class='delete'> Eliminar </a>" .
