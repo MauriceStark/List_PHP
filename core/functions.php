@@ -6,23 +6,23 @@ include("conexion.php");
 *Funcion para cambiar el status del contenido
 *		@param int 1 enable, 0 disable
 */
-function content_status($status){
+function content_status($status,$uid){
 	$pid= $_GET['pid'];
-	mysql_query("UPDATE registro . parrafos SET status = $status WHERE pid = $pid") or die(mysql_error());
+	mysql_query("UPDATE parrafos SET status = $status WHERE pid = $pid AND uid = $uid") or die(mysql_error());
 	header("Location: ../home.php");
 }
 /**
 *Funcion para borrar un evento
 *		El pid a eliminar se obtiene por GET
 */
-function content_delete(){
+function content_delete($uid){
 	$pid= $_GET['pid'];
-	mysql_query("DELETE FROM registro . parrafos  WHERE  parrafos . pid  = $pid") or die(mysql_error());
+	mysql_query("DELETE FROM parrafos  WHERE  pid = $pid AND uid = $uid") or die(mysql_error());
 	header("Location: ../home.php");
 }
 
 function count_status($uid,$status){
-	$query 		= "SELECT status FROM parrafos WHERE (uid = $uid AND status = $status)";
+	$query 		= "SELECT status FROM parrafos WHERE uid = $uid AND status = $status";
 	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
 	$datos 		= mysql_fetch_array( $resultado );	//Recupera una fila de resultados como un array asociativo
 	$count 		= mysql_num_rows( $resultado ); 		//Obtiene el numero de filas de la consulta
@@ -50,8 +50,8 @@ function set_message_error($error){
 *Funcion para consultar el status de un evento
 *		
 */
-function event_status($pid,$status){
-	$query 		= "SELECT status FROM parrafos WHERE pid = $pid and status = $status";
+function event_status($pid){
+	$query 		= "SELECT status FROM parrafos WHERE pid = $pid and status = 1";
 	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
 	$datos 		= mysql_fetch_array( $resultado );	//Recupera una fila de resultados como un array asociativo
 	$status 		= mysql_num_rows( $resultado ); 		//Obtiene el numero de filas de la consulta
@@ -64,7 +64,7 @@ function event_status($pid,$status){
 *		@return string
 */
 function get_content($uid){
-	$query = "SELECT texto,pid,fecha FROM parrafos WHERE uid = $uid ORDER BY pid DESC";
+	$query = "SELECT texto,pid,fecha,uid FROM parrafos WHERE uid = $uid ORDER BY pid DESC";
 	return format_html($query) == "" ? "<div class='empty-event'>Publica un evento.</div>" : format_html($query);
 }
 
@@ -95,7 +95,7 @@ function format_html($query){
 	while ($datos = @mysql_fetch_assoc($resultado) ){
 		$pid 		= $datos['pid'];
 		
-		$class =event_status($pid,1) == 1 ? "content-event-enable" : "content-event-disable";
+		$class =event_status($pid) == 1 ? "content-event-enable" : "content-event-disable";
 		
 		$output .=  "<div class='$class'>" .
 							"<p>"
