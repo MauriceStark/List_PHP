@@ -12,6 +12,7 @@
 	azul-verde #1dabb8
 	azul rgb(50, 157, 196)
 	naranja #e76049
+	rojo naranja F0544E
 */
 
 $color_primary:	#1dae90;
@@ -44,7 +45,9 @@ $header_height:70px;
   color: #fff;
 }
 
-body {
+*:focus { border: 0; outline: 0; }
+
+	body {
 	font-family: 'Lato', Calibri, Arial, sans-serif;
 	background: $background;
 	font-size:14px;
@@ -79,6 +82,7 @@ header{
 	z-index:2;
 	height:$header_height;
 	border-top:3px solid $color_primary;
+	box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 h1,h2,h3,h4,h5,p{
@@ -168,10 +172,6 @@ input[type="image"]{
 	}
 }
 
-.enable{}
-
-.disable{}
-
 .delete{}
 
 .empty-event{
@@ -234,14 +234,15 @@ input[type="image"]{
 	width:100%;
 	height:100%;
 	border-radius:3px;
+	box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, .2);
 	
 	img{
 		position:relative;
 		border: 8px solid #1bbc9a;
-		width: 120px;
-		height: 120px;
-		border-radius: 100%;
-		left: 25%;
+		width: 160px;
+		height: 160px;
+		border-radius: 50%;
+		left: 18%;
 		margin-top:10px;
 	}
 }
@@ -256,6 +257,7 @@ input[type="image"]{
 	margin-bottom:10px;
 	border-radius:3px;
 	padding:10px;
+	box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, .2);
 }
 
 .content-event-enable{
@@ -284,6 +286,7 @@ input[type="image"]{
 
 .form-event{
 	background-color:$color_primary;
+	box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, .2);
 	max-width:700px;
 	height:122px;
 	position:relative;
@@ -305,7 +308,7 @@ input[type="image"]{
 		resize:none;
 		position:relative;
 		display:block;
-		margin-bottom:20px;
+		margin-bottom:12px;
 	}
 	input[type="date"]{
 		padding: 2px 5px 2px;
@@ -403,7 +406,7 @@ input {
 	outline: none;
 	-webkit-appearance: none;
 
-	&[type="submit"] {
+	&[type = "submit"] {
 		cursor: pointer;
 	}
 }
@@ -419,6 +422,69 @@ input {
 		clear: both;
 	}
 }
+/* ---------- BUTTON ENABLE/DISABLE---------- */
+
+.button-block {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%; /* TODO: prefix */
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  position: relative;
+  border: 35px solid $color_secondary;
+  box-sizing: border-box;
+  transition: border 600ms ease-in-out;
+  
+  button {
+	  position: absolute;
+	  left: 50%;
+	  top: 50%;
+	  width: 30px;
+	  height: 30px;
+	  background: transparent;
+	  border: 0;
+	  margin: -15px 0 0 -15px;
+	  cursor: pointer;
+	}
+}
+
+.mark {
+  background-color: #fff;
+  position: absolute;
+  height: 30px;
+  width: 4px;
+  display: block;
+  top: 0;
+  transition: all 600ms ease-in-out;
+}
+
+.x  { 
+  right: 14px; 
+  transform:rotate(45deg); /* TODO: prefix */
+}
+.xx { 
+  left: 12px; 
+  transform:rotate(-45deg); /* TODO: prefix */
+}
+
+.canceled  {
+  border-width: 4px;
+  border-color: $color_primary;
+  
+  .mark { background-color: $color_primary; }
+  .mark.x {
+  		right: 5px;
+  		top: -3px;
+		height: 35px;
+	}
+	.mark.xx {
+	  height: 15px;
+	  top: 15px;
+	  left: 5px;
+	}
+}
+
 /* ---------- LOGIN-FORM ---------- */
 
 #login-form {

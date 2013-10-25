@@ -71,7 +71,8 @@
 						<input type="submit" value="Publicar">
 					</form>
 				</div>
-
+			  
+			  
 				<div id="resultado"> <!-- Div donde se mostraran los resultados mediante ajax-->
 					<h2>Pendientes <?php print count_status($uid,1) ?></h2>
 					<h2>Completados <?php print count_status($uid,0) ?></h2>

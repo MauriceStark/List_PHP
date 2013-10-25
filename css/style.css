@@ -13,6 +13,7 @@
 	azul-verde #1dabb8
 	azul rgb(50, 157, 196)
 	naranja #e76049
+	rojo naranja F0544E
 */
 
 ::-webkit-scrollbar {
@@ -32,6 +33,11 @@
 ::selection {
   background-color: #1dae90;
   color: #fff;
+}
+
+*:focus {
+  border: 0;
+  outline: 0;
 }
 
 body {
@@ -72,6 +78,8 @@ header {
   z-index: 2;
   height: 70px;
   border-top: 3px solid #1dae90;
+  -webkit-box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 0px rgba(0, 0, 0, 0.1);
 }
 
 h1,
@@ -248,15 +256,17 @@ input[type="image"] {
   width: 100%;
   height: 100%;
   border-radius: 3px;
+  -webkit-box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 .avatar img {
   position: relative;
   border: 8px solid #1bbc9a;
-  width: 120px;
-  height: 120px;
-  border-radius: 100%;
-  left: 25%;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  left: 18%;
   margin-top: 10px;
 }
 
@@ -270,6 +280,8 @@ input[type="image"] {
   margin-bottom: 10px;
   border-radius: 3px;
   padding: 10px;
+  -webkit-box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
 }
 
 .content-event-enable {
@@ -298,6 +310,8 @@ input[type="image"] {
 
 .form-event {
   background-color: #1dae90;
+  -webkit-box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
   max-width: 700px;
   height: 122px;
   position: relative;
@@ -320,7 +334,7 @@ input[type="image"] {
   resize: none;
   position: relative;
   display: block;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
 }
 
 .form-event input[type="date"] {
@@ -464,6 +478,85 @@ input[type="submit"] {
 
 .clearfix:after {
   clear: both;
+}
+
+/* ---------- BUTTON ENABLE/DISABLE---------- */
+
+.button-block {
+  width: 70px;
+  height: 70px;
+  border-radius: 100%;
+  /* TODO: prefix */
+  margin: 0 auto;
+  position: relative;
+  display: block;
+  position: relative;
+  border: 35px solid #f15062;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-transition: border 600ms ease-in-out;
+  transition: border 600ms ease-in-out;
+}
+
+.button-block button {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 0;
+  margin: -15px 0 0 -15px;
+  cursor: pointer;
+}
+
+.mark {
+  background-color: #fff;
+  position: absolute;
+  height: 30px;
+  width: 4px;
+  display: block;
+  top: 0;
+  -webkit-transition: all 600ms ease-in-out;
+  transition: all 600ms ease-in-out;
+}
+
+.x {
+  right: 14px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  /* TODO: prefix */
+}
+
+.xx {
+  left: 12px;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  /* TODO: prefix */
+}
+
+.canceled {
+  border-width: 4px;
+  border-color: #1dae90;
+}
+
+.canceled .mark {
+  background-color: #1dae90;
+}
+
+.canceled .mark.x {
+  right: 5px;
+  top: -3px;
+  height: 35px;
+}
+
+.canceled .mark.xx {
+  height: 15px;
+  top: 15px;
+  left: 5px;
 }
 
 /* ---------- LOGIN-FORM ---------- */

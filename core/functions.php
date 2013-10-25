@@ -93,20 +93,27 @@ function format_html($query){
 	$output = "";
 
 	while ($datos = @mysql_fetch_assoc($resultado) ){
-		$pid 		= $datos['pid'];
+		$pid = $datos['pid'];
 		
-		$class =event_status($pid) == 1 ? "content-event-enable" : "content-event-disable";
+		$class_status 	= event_status($pid) == 1 ? "content-event-enable" : "content-event-disable";
+		$class_enable 	= event_status($pid) == 1 ? "button-block" : "button-block canceled";
+		$url_status 	= event_status($pid) == 1 ? "core/disable.php?pid=$pid" : "core/enable.php?pid=$pid";
 		
-		$output .=  "<div class='$class'>" .
+		$output .=  "<div class='$class_status'>" .
+							"<a href='core/delete.php?pid=$pid' class='delete'> Eliminar </a>" .
 							"<p>"
 								. $datos['texto'] .
 							"</p>
 							 <h5>"
 								. $datos['fecha'] .
 							 "</h5>
-							 <a href='core/delete.php?pid=$pid' 	class='delete'>	Eliminar 	</a>
-							 <a href='core/disable.php?pid=$pid'	class='disable'>	Desabilitar </a>
-							 <a href='core/enable.php?pid=$pid'  	class='enable'>	Habilitar 	</a>
+
+							 <div class='$class_enable'>
+							 	<button type='button' onclick=location.href='$url_status';>
+									<span class='mark x'></span>
+									<span class='mark xx'></span>
+								</button>
+							 </div>
 						 </div>";
 	}
 	return $output;
