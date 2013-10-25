@@ -47,6 +47,18 @@ function set_message_error($error){
 }
 
 /**
+*Funcion para consultar el status de un evento
+*		
+*/
+function event_status($pid,$status){
+	$query 		= "SELECT status FROM parrafos WHERE pid = $pid and status = $status";
+	$resultado 	= @mysql_query( $query ) or die( mysql_error() );
+	$datos 		= mysql_fetch_array( $resultado );	//Recupera una fila de resultados como un array asociativo
+	$status 		= mysql_num_rows( $resultado ); 		//Obtiene el numero de filas de la consulta
+	return $status;
+}
+
+/**
 *Funcion para consultar todo el contenido
 *		@param string $departamento opcional
 *		@return string
@@ -82,8 +94,10 @@ function format_html($query){
 
 	while ($datos = @mysql_fetch_assoc($resultado) ){
 		$pid 		= $datos['pid'];
-
-		$output .=  "<div class='content-event'>" .
+		
+		$class =event_status($pid,1) == 1 ? "content-event-enable" : "content-event-disable";
+		
+		$output .=  "<div class='$class'>" .
 							"<p>"
 								. $datos['texto'] .
 							"</p>
@@ -97,6 +111,8 @@ function format_html($query){
 	}
 	return $output;
 }
+
+
 
 function get_image($uid){
 
@@ -123,9 +139,7 @@ function upload_image($uid){
 	  set_message_error("ha ocurrido un error, intentalo mas tarde.");
 	} else {
 
-	  //Verificamos si el tipo de archivo es un tipo de imagen permitido.
 	  $permitidos = array("image/jpg", "image/jpeg", "image/gif", "image/png");
-	  //Verificamos si el tamano del archivo no excede los 900kb
 	  $limite_kb = 900;
 
 	  if ( in_array($_FILES['imagen']['type'], $permitidos) && $_FILES['imagen']['size'] <= $limite_kb * 1024){
@@ -139,11 +153,9 @@ function upload_image($uid){
 			if ($resultado){
 
 			  //Verifica si la imagen que tiene no es la default para no borrarla de la carpeta
-			  if(get_image($uid) != "images/default-avatar.png"){
-				  //borra la imagen anterior que tenia
-				  unlink("../" . get_image($uid) );
-				  //borra la ruta de la base de datos
-				  delete_image($uid);
+			  if(get_image($uid) != "images/default-avatar.png"){	 
+				  unlink("../" . get_image($uid) ); //borra la imagen anterior que tenia				 
+				  delete_image($uid); 					//borra la ruta de la base de datos
 			  }
 
 			  $nombre = $_FILES['imagen']['name'];

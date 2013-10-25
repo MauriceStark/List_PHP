@@ -1,9 +1,8 @@
 @charset "utf-8";
 @import url(http://fonts.googleapis.com/css?family=Lato);
-@import url(fonts/css/fontello.css);
+@import "fonts/css/fontello.css";
 
 /* CSS Document */
-
 /*
 	Paleta de colores realpixels
 	rojo #f15062
@@ -69,7 +68,7 @@ a {
 	color: $color_primary;
 
 	&:hover{
-		color: #e76049;
+		color: $color_secondary;
 	}
 }
 
@@ -183,11 +182,9 @@ input[type="image"]{
 
 .primary{
 	width:255px;
-	height:500px;;
+	height:500px;
 	position:relative;
-	float:left;
-	background-color:rgba(0, 0, 0, 0.1);
-	display:inline-table;
+	display:inline-block;
 }
 .second{
 	width:700px;
@@ -195,26 +192,49 @@ input[type="image"]{
 	float:right;
 }
 
-.file_upload:before {
-	content: 'Cambiar';
-	position: relative;
-	left: 50px;
-	right: 0;
-	text-align: center;
-	cursor: pointer;
-}
-
-.file_upload input {
-	position: relative;
-	width:70px;
-	height:30px;
-	display: inline;
-	cursor: pointer;
-	opacity:0;
+.file_upload_button{
+	position:relative;
+	font-size: 11px;
+	font-weight: 400;
+	width:100px;
+	font-family: "Oswald", sans-serif;
+	padding: 5px 22px 10px;
+	margin-bottom: 3px;
+	display: inline-block;
+	border: 0;
+	background: $color_secondary;
+	color: #fff;
+	border-radius: 3px;
+	transition: all 0.4s ease-in-out;
+	box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.1);
+	
+	&:before {
+		content: 'Cambiar imagen';
+		text-align: center;
+		cursor: pointer;
+		text-transform: uppercase;
+	}	
+		
+	input {
+		position: absolute;
+		left:0;
+		width: 127px;
+		opacity:0;
+		background-color:white;
+		margin-left: 7px;
+		cursor: pointer;
+	}		
 }
 
 .avatar{
 	position:relative;
+	float:left;
+	background-color:$color_base;
+	display:inline-table;
+	width:100%;
+	height:100%;
+	border-radius:3px;
+	
 	img{
 		position:relative;
 		border: 8px solid #1bbc9a;
@@ -227,18 +247,34 @@ input[type="image"]{
 }
 
 .error-parrafo{
-	color:#EB4D75;
+	color:$color_secondary;
 	font-size:23px;
 }
 
-.content-event{
-	background-color:$color_base;
+.content-event-enable,
+.content-event-disable{
 	margin-bottom:10px;
 	border-radius:3px;
 	padding:10px;
+}
+
+.content-event-enable{
+	background-color:$color_base;
 
 	p{
 		color:white;
+	}
+
+	h5{
+		color:$color_secondary;
+	}
+}
+
+.content-event-disable{
+	background-color:rgba(0, 0, 0, 0.05);
+
+	p{
+		color:rgba(0, 0, 0, 0.5);
 	}
 
 	h5{
@@ -471,16 +507,6 @@ $barColor: $color_secondary;
 $overlayColor: $background;
 $backColor: $color_base;
 
-/*body{
-  padding: 30px 0;
-  background-color: $backColor;
-  font-family: 'Noto Sans', sans-serif;
-}
-.wrap{
-  width: 600px;
-  margin: 0 auto;
-}*/
-
 /* -------------------------------------
  * Bar container
  * ------------------------------------- */
@@ -512,15 +538,14 @@ $backColor: $color_base;
  * Mixin for progress-% class
  * ------------------------------------- */
 
-$step: 1; 
-$loops: 		100 / $step;
+$loops: 		100; //percent limit %
 $increment: 360 / $loops;
 $half: 		$loops / 2;
 
 @for $i from 0 through $loops{
   
-  .progress-#{$i * $step}{
-		 @if $i < $half{
+  .progress-#{$i}{
+		@if $i < $half{
 		 	$nextdeg: 90deg + ( $increment * $i );	
 			background-image: linear-gradient(90deg, $backColor 50%, transparent 50%, transparent), 
 									linear-gradient($nextdeg, $barColor 50%, $backColor 50%, $backColor);
@@ -529,5 +554,6 @@ $half: 		$loops / 2;
 			background-image: linear-gradient($nextdeg, $barColor 50%, transparent 50%, transparent), 
 									linear-gradient(270deg, $barColor 50%, $backColor 50%, $backColor);
 		}
+		
 	}
 }

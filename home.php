@@ -49,30 +49,32 @@
 							<div class="overlay"><?php print percent_complete($uid)?>%</div>
 						</div>
 					</div>
-				
+			
 					<a href="core/logout.php" class="logout">Log Out</a>
+					
 					<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
-						<div class="file_upload">
-							<input type="file" 	name="imagen"/>
+						<div class="file_upload_button">
+							<input type="file" 	name="imagen" required>
 						</div>
 						<input type="submit" 	name="subir" value="Subir"/>
 					</form>
 					
-				</div><!-- END avatar-->
-				
+				</div><!-- END avatar-->		
 			</div>
 
 			<div class="second"><!-- Div secondario parte derecha-->
 
 				<div class="form-event">
 					<form name="form" action=""  onsubmit="enviarDatos(); return false">
-						<textarea name="Parrafo" placeholder="Publica un recordatorio..."></textarea>
+						<textarea name="Parrafo" placeholder="Publica un recordatorio..." required></textarea>
 						<input type="date" 	name="Fecha">
 						<input type="submit" value="Publicar">
 					</form>
 				</div>
 
 				<div id="resultado"> <!-- Div donde se mostraran los resultados mediante ajax-->
+					<h2>Pendientes <?php print count_status($uid,1) ?></h2>
+					<h2>Completados <?php print count_status($uid,0) ?></h2>
 					<?php
 						// isset devuelve TRUE si la busqueda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
 						print isset($_GET[ 'search' ]) ? get_search($uid, $_GET[ 'search' ]) : get_content($uid);

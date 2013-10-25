@@ -28,5 +28,8 @@
             echo "<div class='error-parrafo'>Error, no ha introducido todos los datos</div>";
         }
         
+        print count_status($uid,1);//prueba
+        print count_status($uid,0);//prueba
+      
        print get_content($uid);
 ?>
