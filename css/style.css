@@ -163,6 +163,7 @@ input[type="image"] {
 .logout {
   float: right;
   position: relative;
+  font-size: 1.5em;
 }
 
 .logo {
@@ -633,65 +634,40 @@ input[type="submit"] {
 
 /* ---------- LOGIN-FORM ---------- */
 
-#login-form {
-  margin: 50px auto;
+.login-form {
   width: 300px;
 }
 
-#login-form h3 {
-  background-color: #2d3b4d;
-  border-radius: 5px 5px 0 0;
-  color: #fff;
-  font-size: 1.4em;
-  padding: 20px;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-#login-form fieldset {
-  background: #fff;
+.login-form fieldset {
+  background: rgba(0, 0, 0, 0.2);
   border-radius: 0 0 5px 5px;
   padding: 20px;
   position: relative;
 }
 
-#login-form fieldset:before {
-  background-color: #fff;
-  content: "";
-  height: 8px;
-  left: 50%;
-  margin: -4px 0 0 -4px;
-  position: absolute;
-  top: 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
-  width: 8px;
-}
-
-#login-form input {
+.login-form input {
   font-size: 1.4em;
 }
 
-#login-form input[type="text"],
-#login-form input[type="email"],
-#login-form input[type="password"] {
+.login-form input[type="text"],
+.login-form input[type="email"],
+.login-form input[type="password"] {
   border: 1px solid #dcdcdc;
   padding: 12px 10px;
   width: 238px;
 }
 
-#login-form input[type="text"],
-#login-form input[type="email"] {
+.login-form input[type="text"],
+.login-form input[type="email"] {
   border-radius: 3px 3px 0 0;
 }
 
-#login-form input[type="password"] {
+.login-form input[type="password"] {
   border-top: none;
   border-radius: 0px 0px 3px 3px;
 }
 
-#login-form input[type="submit"] {
+.login-form input[type="submit"] {
   background: #1dae90;
   border-radius: 3px;
   color: #fff;
@@ -701,24 +677,95 @@ input[type="submit"] {
   padding: 12px 20px;
 }
 
-#login-form input[type="submit"]:hover {
+.login-form input[type="submit"]:hover {
   background: #1bcaa5;
 }
 
-#login-form footer {
+.login-form footer {
   font-size: 1.2em;
-  margin-top: 16px;
 }
 
-.info {
-  background: #e5e5e5;
-  border-radius: 50%;
-  display: inline-block;
-  height: 20px;
-  line-height: 20px;
-  margin: 0 10px 0 0;
+/*--------------------TAB---------------------------*/
+
+.contenedor-tabs {
+  max-width: 450px;
+  margin: 50px auto 0;
+  position: relative;
+}
+
+.tab div {
+  background: white;
+  width: 100%;
+  height: 250px;
+  position: absolute;
+  top: 12em;
+  line-height: 1.2;
+  z-index: 5;
+  opacity: 0;
+  -webkit-transition: opacity 1s ease, top 1s ease, visibility 1s ease;
+  transition: opacity 1s ease, top 1s ease, visibility 1s ease;
+  border-radius: 0 0 5px 5px;
+  visibility: collapse;
+}
+
+.tab .tab-e {
+  float: left;
+  width: 50%;
+  min-width: 85px;
+  padding: 13px 0 13px 0;
+  background: #2d3b4d;
+  text-decoration: none;
+  font-size: 1.5em;
+  color: white;
   text-align: center;
-  width: 20px;
+  position: relative;
+  -webkit-transition: background .5s ease;
+  transition: background .5s ease;
+  z-index: 70;
+}
+
+.tab .tab-e:after {
+  content: "";
+  height: 8px;
+  left: 50%;
+  position: absolute;
+  bottom: 4px;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  width: 8px;
+  -webkit-transition: top .5s ease;
+  transition: top .5s ease;
+}
+
+.tab-e:hover {
+  background: #1dae90;
+}
+
+.btn-tab:target + .tab div {
+  opacity: 1;
+  top: 4.5em;
+  visibility: visible;
+}
+
+.btn-tab:target + .tab .tab-e {
+  color: #f5f5f5;
+  background: #1dae90;
+}
+
+.btn-tab:target + .tab .tab-e:after {
+  bottom: -4px;
+  -webkit-transition: bottom .5s ease;
+  transition: bottom .5s ease;
+  background: #1dae90;
+}
+
+.contenedor-tabs .btn-tab:nth-child(1) + .tab .tab-e {
+  border-radius: 5px 0 0 0;
+}
+
+.contenedor-tabs .btn-tab:nth-child(3) + .tab .tab-e {
+  border-radius: 0 5px 0 0;
 }
 
 /*Percent circle*/

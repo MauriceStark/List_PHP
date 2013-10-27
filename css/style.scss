@@ -145,6 +145,7 @@ input[type="image"]{
 .logout{
 	float:right;
 	position:relative;
+	font-size:1.5em;
 }
 
 .logo{
@@ -551,36 +552,14 @@ input {
 @include disable();
 /* ---------- LOGIN-FORM ---------- */
 
-#login-form {
-	margin: 50px auto;
+.login-form {
 	width: 300px;
 
-	h3{
-		background-color: $color_base;
-		border-radius: 5px 5px 0 0;
-		color: #fff;
-		font-size: 1.4em;
-		padding: 20px;
-		text-align: center;
-		text-transform: uppercase;
-	}
 	fieldset {
-		background: #fff;
+		background: rgba(0, 0, 0, 0.2);
 		border-radius: 0 0 5px 5px;
 		padding: 20px;
 		position: relative;
-	}
-
-	fieldset:before {
-		background-color: #fff;
-		content: "";
-		height: 8px;
-		left: 50%;
-		margin: -4px 0 0 -4px;
-		position: absolute;
-		top: 0;
-		transform: rotate(45deg);
-		width: 8px;
 	}
 	input {
 		font-size: 1.4em;
@@ -615,20 +594,117 @@ input {
 	}
 	footer {
 		font-size: 1.2em;
-		margin-top: 16px;
 	}
 } // end #login-form
 
-.info {
-	background: #e5e5e5;
-	border-radius: 50%;
-	display: inline-block;
-	height: 20px;
-	line-height: 20px;
-	margin: 0 10px 0 0;
-	text-align: center;
-	width: 20px;
+
+/*--------------------TAB---------------------------*/
+
+$top_init:4.5em;
+
+.contenedor-tabs {
+	max-width: 450px;
+	margin: 50px auto 0;
+	position: relative;
 }
+
+.tab div {
+	background: white;
+	width: 100%;
+	height:250px;
+	position: absolute;
+	top: 12em;
+	line-height: 1.2;
+	z-index: 5;
+	opacity:0;
+	transition: opacity 1s ease, top 1s ease, visibility 1s ease;
+	border-radius: 0 0 5px 5px;
+	visibility:collapse;
+}
+
+.tab .tab-e {
+  	float: left;
+	width: 50%;
+	min-width: 85px;
+	padding: 13px 0 13px 0;
+	background: $color_base;
+	text-decoration: none;
+	font-size: 1.5em;
+	color: white;
+	text-align: center;
+	position: relative;
+	transition: background .5s ease;
+	z-index: 70;
+}
+.tab .tab-e:after {
+	content: "";
+	height: 8px;
+	left: 50%;
+	position: absolute;
+	bottom: 4px;
+	transform: rotate(45deg);
+	width: 8px;
+	transition: top .5s ease;
+}
+ 
+.tab-e:hover {
+ 	background: $color_primary;
+}
+
+.btn-tab:target {
+	 + .tab div {
+		opacity: 1;
+		top: $top_init; 
+		visibility:visible;
+	}
+	
+	 + .tab .tab-e {
+		color: #f5f5f5;
+		background: $color_primary;
+	 }
+	 
+	  + .tab .tab-e:after {
+		bottom: -4px;
+		transition: bottom .5s ease;
+		background: $color_primary;
+	}
+}
+
+.contenedor-tabs .btn-tab:nth-child(1) + .tab .tab-e {border-radius: 5px 0 0 0;}
+.contenedor-tabs .btn-tab:nth-child(3) + .tab .tab-e {border-radius: 0 5px 0 0;}
+
+/*
+.tab div.tab-active{
+ 	opacity: 1; 
+ 	top: $top_init;
+ 	visibility:visible;
+}
+*/
+
+/*@media screen and (max-width:370px){
+	.contenedor-tabs {
+		width: 100%;
+		min-width: 370px;
+		margin: 2.5rem 0;
+  }
+  .tab div {
+		font-size: 1rem;
+		line-height: 1.1;
+		padding: 1rem 5px;
+		width: 100%;
+  }  
+  .tab .tab-e {
+		font-size: 1rem;
+		padding: .5rem 0;
+		text-align: center;
+		line-height: 1.5rem;
+		width: 25%;
+		margin-right: 0;
+	}
+ }*/
+
+
+
 
 
 /*Percent circle*/
