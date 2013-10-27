@@ -5,20 +5,42 @@
 		<link type="text/css" rel="stylesheet" href="css/style.css"/>
 	</head>
 	<body>
+    	
+    	<div class="contenedor-tabs">
+    	
+    		<!--El id de cada uno de estos span coincide con el destino del enlace (href) de la pestaña asociada (class="tab-e)-->
+			<span class="btn-tab" id="login"></span>
+			<div class="tab">
+				<a href="#login" class="tab-e icon-plus">Login</a>
+				<div class="tab-active login-form">				
+						<fieldset>
+							<form action="core/access.php" method="post">
+								<input type="text" name="NickName" required placeholder="User">
+								<input type="password" name="Password" required placeholder="Contraseña">
+								<input type="submit" value="Sign Up" />
+							</form>
+						</fieldset>				
+				</div>
+			</div>
+			
+			<span class="btn-tab" id="registro"></span>		
+			<div class="tab">
+				<a href="#registro" class="tab-e">Registro</a>
+				<div class="login-form">
+					<fieldset>
+						<form name="formulario" action="core/registro.php" method="post">
+							 <input type="text" name="NickName" required placeholder="User">
+		
+							 <input type="password" name="Password" required placeholder="Contraseña">
+							 <p></p>
+							 <input type="email" name="Email" required placeholder="Email">
+							 <input type="submit" value="Enviar" />
 
-		 <div id="login-form">
-        <h3>Login</h3>
-        <fieldset>
-            <form action="core/access.php" method="post">
-                <input type="text" name="NickName" required placeholder="User">
-                <input type="password" name="Password" required placeholder="Contraseña">
-                <input type="submit" value="Sign Up" />
-                <footer class="clearfix">
-                    <p><span class="info">R</span><a href="registro.html">Registrarse</a></p>
-                </footer>
-            </form>
-        </fieldset>
-    	</div> <!-- end login-form -->
+						</form>
+				  </fieldset>
+				</div>
+			</div>
+		</div>
 
 	</body>
 </html>
