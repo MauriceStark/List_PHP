@@ -19,8 +19,12 @@
 				<div class="tab-active login-form">				
 					<fieldset>
 						<form action="core/access.php" method="post">
-							<span class="icon-user"></span><input type="text" name="NickName" required placeholder="User" >
-							<span class="icon-key"></span><input type="password" name="Password" required placeholder="Contraseña">
+							<span class="icon-user"></span>
+							<input type="text" name="NickName" required placeholder="User" >
+							
+							<span class="icon-key"></span>
+							<input type="password" name="Password" required placeholder="Contraseña">
+							
 							<input type="submit" value="Log In" />
 						</form>
 					</fieldset>				
@@ -40,16 +44,20 @@
 						<form name="formulario" action="core/registro.php" method="post">
 							 <p>Ingrese un nombre de Usuario</p>
 							 <input type="text" name="NickName" required placeholder="Nombre">
+							 
 							 <p>Entre 4 y 12 caracteres alfanuméricos.</p>
 							 <input type="password" name="Password" required placeholder="Contraseña">
+							 
 							 <p>Debe ser una dirección de correo electrónico válida.</p>
 							 <input type="email" name="Email" required placeholder="Email@List.com">						 
+							 
 							 <input type="submit" value="Send" />
 						</form>
 				  </fieldset>
 				</div>
 			</div>
-		</div>
+			
+		</div><!--END contenedor-tabs-->	
 
 	</body>
 </html>
