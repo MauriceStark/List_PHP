@@ -74,8 +74,6 @@
 			  
 			  
 				<div id="resultado"> <!-- Div donde se mostraran los resultados mediante ajax-->
-					<h2>Pendientes <?php print count_status($uid,1) ?></h2>
-					<h2>Completados <?php print count_status($uid,0) ?></h2>
 					<?php
 						// isset devuelve TRUE si la busqueda existe y tiene un valor distinto de NULL, FALSE de lo contrario.
 						print isset($_GET[ 'search' ]) ? get_search($uid, $_GET[ 'search' ]) : get_content($uid);

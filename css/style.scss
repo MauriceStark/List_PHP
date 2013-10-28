@@ -3,9 +3,7 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,100);
 @import "fonts/css/fontello.css";
 
-/* CSS Document */
 /*
-	Paleta de colores realpixels
 	rojo #f15062
 	verde #1dae90
 	backgraund #394c5a
@@ -16,20 +14,76 @@
 	rojo naranja #F0544E
 */
 
+/*------------------------------------*\
+ 	COLORS
+\*------------------------------------*/
 $color_primary:	rgb(29, 174, 144);
 $color_secondary: rgb(50, 157, 196);
 $complementary: 	rgb(241, 80, 98);
-$color_base:		rgba(45, 59, 77,1);
+$color_base:		rgb(45, 59, 77);
 $color_fonts:		rgb(66, 69, 79);
 $background: 		rgb(234, 234, 234);
 
+
+/*------------------------------------*\
+    MIXIN
+\*------------------------------------*/
+ 
+/* -------------------------------------
+ * Hover and Active backgrounds
+ * ------------------------------------- */
 @mixin hover($color) {
   background: saturate( lighten( $color, 5%), 5%);
 }
 
 @mixin active($color) {
-  background: desaturate( darken( $color, 10%), 15%);
+  background: desaturate( darken( $color, 5%), 10%);
 }
+
+/* -------------------------------------
+ * Long shadow
+ * ------------------------------------- */
+@function makelongshadow($color) {
+  $val: 0px 0px $color;
+  @for $i from 1 through 8 {
+    $val: #{$val}, #{$i}px #{$i}px #{$color};
+  }
+  @return $val;
+}
+
+@mixin longshadow($color) {
+  text-shadow: makelongshadow($color);
+}
+
+/* -------------------------------------
+ * Progress-% class
+ * ------------------------------------- */
+
+$barColor: 	$color_secondary;
+$backColor: $color_base;
+$loops: 		100; //percent limit %
+$increment: 360 / $loops;
+$half: 		$loops / 2;
+
+@for $i from 0 through $loops{
+  
+  .progress-#{$i}{
+		@if $i < $half{
+		 	$nextdeg: 90deg + ( $increment * $i );	
+			background-image: linear-gradient(90deg, $backColor 50%, transparent 50%, transparent), 
+									linear-gradient($nextdeg, $barColor 50%, $backColor 50%, $backColor);
+		}@else{
+			$nextdeg: -90deg + ( $increment * ( $i - $half ) );
+			background-image: linear-gradient($nextdeg, $barColor 50%, transparent 50%, transparent), 
+									linear-gradient(270deg, $barColor 50%, $backColor 50%, $backColor);
+		}
+		
+	}
+}
+
+/*------------------------------------*\
+    STYLES
+\*------------------------------------*/
 
 $header_height:70px;
 
@@ -553,65 +607,74 @@ input {
 /* ---------- LOGIN-FORM ---------- */
 
 .login-form {
-	width: 300px;
 
 	fieldset {
-		background: rgba(0, 0, 0, 0.2);
-		border-radius: 0 0 5px 5px;
 		padding: 20px;
 		position: relative;
-	}
-	input {
-		font-size: 1.4em;
+		width:300px;
+		margin:0 auto;
+		
+		span{
+			font-size:2.3em;
+			float:right;
+			position:relative;
+			top:33px;
+			color:rgba(0, 0, 0, 0.22);
+		}
+		p{
+			color:rgba(0, 0, 0, 0.5);
+		}
+		
 	}
 	input[type = "text"],
-	input[type = "email"],
-	input[type = "password"] {
+	input[type = "password"],
+	input[type = "email"] {
+		font-size: 1.4em;
 		border: 1px solid #dcdcdc;
 		padding: 12px 10px;
-		width: 238px;
+		width: 100%;
+		margin-bottom:10px;
+		
+		&:focus{
+			border: 1px solid $color_primary;
+		}
 	}
-	input[type = "text"],
-	input[type = "email"] {
-		border-radius: 3px 3px 0 0;
-	}
-	input[type = "password"] {
-		border-top: none;
-		border-radius: 0px 0px 3px 3px;
-	}
+	
 	input[type = "submit"] {
-		background: $color_primary;
+		background: $color_secondary;
 		border-radius: 3px;
 		color: #fff;
 		float: right;
 		font-weight: bold;
 		margin-top: 20px;
 		padding: 12px 20px;
+		width: 100px;
 
 		&:hover {
-			@include hover($color_primary);
+			@include hover($color_secondary);
 		}
-	}
-	footer {
-		font-size: 1.2em;
+		&:active {
+			@include active($color_secondary);
+		}
 	}
 } // end #login-form
 
 
 /*--------------------TAB---------------------------*/
 
-$top_init:4.5em;
+$top_init:6.5em;
 
 .contenedor-tabs {
-	max-width: 450px;
+	max-width: 500px;
 	margin: 50px auto 0;
 	position: relative;
 }
 
 .tab div {
 	background: white;
+	box-shadow: inset 0 -2px 0 0 rgba(0, 0, 0, 0.12);
 	width: 100%;
-	height:250px;
+	height:auto;
 	position: absolute;
 	top: 12em;
 	line-height: 1.2;
@@ -621,7 +684,7 @@ $top_init:4.5em;
 	border-radius: 0 0 5px 5px;
 	visibility:collapse;
 }
-
+/*crea la pestaña visual*/
 .tab .tab-e {
   	float: left;
 	width: 50%;
@@ -635,34 +698,46 @@ $top_init:4.5em;
 	position: relative;
 	transition: background .5s ease;
 	z-index: 70;
-}
-.tab .tab-e:after {
-	content: "";
-	height: 8px;
-	left: 50%;
-	position: absolute;
-	bottom: 4px;
-	transform: rotate(45deg);
-	width: 8px;
-	transition: top .5s ease;
+	
+	
+	/* -------------------------------------
+	* Crea el triangulo inferior de la pestaña
+	* ------------------------------------- */
+	&:after { 
+		content: "";
+		height: 8px;
+		left: 50%;
+		position: absolute;
+		bottom: 4px;
+		transform: rotate(45deg);
+		width: 8px;
+		transition: top .5s ease;
+	}
 }
  
 .tab-e:hover {
  	background: $color_primary;
 }
 
+
+/* -------------------------------------
+ * Cuando pulsas una Pestaña
+ * ------------------------------------- */
 .btn-tab:target {
+	 /*efecto para el div oculto*/
 	 + .tab div {
 		opacity: 1;
 		top: $top_init; 
 		visibility:visible;
 	}
-	
+	/*efecto para la pestaña*/
 	 + .tab .tab-e {
+	 	transition: text-shadow .5s ease;
 		color: #f5f5f5;
 		background: $color_primary;
+		@include longshadow(darken($color_primary, 5% ));
 	 }
-	 
+	 /*anima el triangulo inferior*/
 	  + .tab .tab-e:after {
 		bottom: -4px;
 		transition: bottom .5s ease;
@@ -670,47 +745,20 @@ $top_init:4.5em;
 	}
 }
 
+/*efecto de redondeo separado para las pestañas*/
 .contenedor-tabs .btn-tab:nth-child(1) + .tab .tab-e {border-radius: 5px 0 0 0;}
 .contenedor-tabs .btn-tab:nth-child(3) + .tab .tab-e {border-radius: 0 5px 0 0;}
 
-/*
-.tab div.tab-active{
+
+/* div.tab-active{
  	opacity: 1; 
  	top: $top_init;
  	visibility:visible;
-}
-*/
+}*/
 
-/*@media screen and (max-width:370px){
-	.contenedor-tabs {
-		width: 100%;
-		min-width: 370px;
-		margin: 2.5rem 0;
-  }
-  .tab div {
-		font-size: 1rem;
-		line-height: 1.1;
-		padding: 1rem 5px;
-		width: 100%;
-  }  
-  .tab .tab-e {
-		font-size: 1rem;
-		padding: .5rem 0;
-		text-align: center;
-		line-height: 1.5rem;
-		width: 25%;
-		margin-right: 0;
-	}
- }*/
-
-
-
-
-
-/*Percent circle*/
 
 /* -------------------------------------
- * Bar container
+ * -Percent circle-
  * ------------------------------------- */
 .progress-radial{
   float: left;
@@ -740,28 +788,4 @@ $top_init:4.5em;
 }
   
 
-/* -------------------------------------
- * Mixin for progress-% class
- * ------------------------------------- */
 
-$barColor: 	$color_secondary;
-$backColor: $color_base;
-$loops: 		100; //percent limit %
-$increment: 360 / $loops;
-$half: 		$loops / 2;
-
-@for $i from 0 through $loops{
-  
-  .progress-#{$i}{
-		@if $i < $half{
-		 	$nextdeg: 90deg + ( $increment * $i );	
-			background-image: linear-gradient(90deg, $backColor 50%, transparent 50%, transparent), 
-									linear-gradient($nextdeg, $barColor 50%, $backColor 50%, $backColor);
-		}@else{
-			$nextdeg: -90deg + ( $increment * ( $i - $half ) );
-			background-image: linear-gradient($nextdeg, $barColor 50%, transparent 50%, transparent), 
-									linear-gradient(270deg, $barColor 50%, $backColor 50%, $backColor);
-		}
-		
-	}
-}
