@@ -683,6 +683,10 @@ input[type="image"] {
   padding: 0px;
 }
 
+#resultado {
+  padding: 10px;
+}
+
 .container {
   position: relative;
   max-width: 960px;
@@ -692,7 +696,9 @@ input[type="image"] {
 .logout {
   float: right;
   position: relative;
-  font-size: 1.5em;
+  font-size: 1.8em;
+  padding: 10px;
+  font-weight: 100;
 }
 
 .logo {
@@ -734,6 +740,11 @@ input[type="image"] {
   padding: 7px 15px 7px;
 }
 
+.back-search {
+  font-size: 2em;
+  font-weight: 100;
+}
+
 .empty-event {
   text-align: center;
   font-size: 3.5em;
@@ -758,8 +769,8 @@ input[type="image"] {
   font-weight: 400;
   width: 100px;
   font-family: "Oswald", sans-serif;
-  padding: 5px 22px 10px;
-  margin-bottom: 3px;
+  padding: 7px 5px 10px 10px;
+  margin: 3px -7px 0 31px;
   display: inline-block;
   border: 0;
   background: #329dc4;
@@ -805,7 +816,7 @@ input[type="image"] {
   width: 160px;
   height: 160px;
   border-radius: 50%;
-  left: 18%;
+  left: 16%;
   margin-top: 10px;
 }
 
@@ -864,7 +875,7 @@ input[type="image"] {
 
 .sub-content-event p {
   width: 85%;
-  margin: 5px 0 5px 20px;
+  margin: 5px 0 2px 20px;
 }
 
 .content-event-enable {
@@ -878,6 +889,8 @@ input[type="image"] {
 .content-event-enable h5 {
   color: #329dc4;
   text-align: center;
+  font-weight: 100;
+  font-size: 1.3em;
 }
 
 .content-event-disable {
@@ -1364,7 +1377,7 @@ input[type="submit"] {
 }
 
 /* -------------------------------------
- * -Percent circle-
+ * Percent circle
  * ------------------------------------- */
 
 .progress-radial {
@@ -1393,4 +1406,10 @@ input[type="submit"] {
   font-size: 2em;
   font-weight: 100;
   color: white;
+}
+
+.wraper-progress {
+  padding-top: 1px;
+  background-color: rgba(0, 0, 0, 0.05);
+  height: 100%;
 }

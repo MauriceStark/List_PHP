@@ -41,7 +41,14 @@
 					
 					<img src="<?php print get_image($uid); ?>" />	
 					
-					<div class="container">
+					<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
+						<div class="file_upload_button">
+							<input type="file" 	name="imagen" required>
+						</div>
+						<input type="submit" 	name="subir" value="Subir"/>
+					</form>
+					
+					<div class="wraper-progress">
 						<div class="progress-radial progress-<?php print percent_complete($uid)?>">
 							<div class="overlay"><?php print percent_complete($uid)?>%</div>
 						</div>
@@ -52,23 +59,13 @@
 						<h2>Completados</h2>
 						<span><?php print count_status($uid,1) ?></span>
 						<span><?php print count_status($uid,0) ?></span>
-					</div>										
+					</div>																		
 
-								
-<!--
 					<a href="core/logout.php" class="logout">
 						<span class="icon-off"></span>
 						Log Out
-					</a>
-					
-					<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
-						<div class="file_upload_button">
-							<input type="file" 	name="imagen" required>
-						</div>
-						<input type="submit" 	name="subir" value="Subir"/>
-					</form>
--->
-					
+					</a>			
+			
 				</div><!-- END avatar-->		
 			</div>
 
