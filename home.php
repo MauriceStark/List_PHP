@@ -39,18 +39,27 @@
 
 				<div class="avatar">
 					
-					<img src="<?php print get_image($uid); ?>" />					
-					<h2>Pendientes <?php print count_status($uid,1) ?></h2>
-					<h2>Completados <?php print count_status($uid,0) ?></h2>
-					<h2>Porcentaje</h2>
+					<img src="<?php print get_image($uid); ?>" />	
 					
-					<div class="wrap">
+					<div class="container">
 						<div class="progress-radial progress-<?php print percent_complete($uid)?>">
 							<div class="overlay"><?php print percent_complete($uid)?>%</div>
 						</div>
-					</div>
-			
-					<a href="core/logout.php" class="logout">Log Out</a>
+					</div>	
+					
+					<div class="data-event">
+						<h2>Pendientes</h2>
+						<h2>Completados</h2>
+						<span><?php print count_status($uid,1) ?></span>
+						<span><?php print count_status($uid,0) ?></span>
+					</div>										
+
+								
+<!--
+					<a href="core/logout.php" class="logout">
+						<span class="icon-off"></span>
+						Log Out
+					</a>
 					
 					<form action="core/upload_image.php" method="POST" enctype="multipart/form-data">
 						<div class="file_upload_button">
@@ -58,6 +67,7 @@
 						</div>
 						<input type="submit" 	name="subir" value="Subir"/>
 					</form>
+-->
 					
 				</div><!-- END avatar-->		
 			</div>
@@ -66,7 +76,7 @@
 
 				<div class="form-event">
 					<form name="form" action=""  onsubmit="enviarDatos(); return false">
-						<textarea name="Parrafo" placeholder="Publica un recordatorio..." required></textarea>
+						<textarea name="Parrafo" placeholder="Publica un recordatorio..." maxlength="350" required></textarea>
 						<input type="date" 	name="Fecha">
 						<input type="submit" value="Publicar">
 					</form>

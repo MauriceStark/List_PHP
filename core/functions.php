@@ -76,7 +76,7 @@ function get_content($uid){
 function get_search($uid,$search){
 	$query = "SELECT texto,uid,pid,fecha FROM parrafos WHERE ( texto LIKE '%".$search."%' OR fecha LIKE '%".$search."%' ) AND uid = $uid ORDER BY pid DESC";
 
-	$search_result  = '<a class="back-search" href="home.php">Ver todos </a>';
+	$search_result  = "<a class='back-search' href='home.php'><span class='icon-left-open-big'><span> Ver todos </a>";
 	$search_result .= format_html($query) == "" ? "<div class='empty-event'>No tines eventos '$search'</div>" : format_html($query);
 
 	return $search_result;
@@ -100,20 +100,20 @@ function format_html($query){
 		$url_status 	= event_status($pid) == 1 ? "core/disable.php?pid=$pid" 	: "core/enable.php?pid=$pid";
 		
 		$output .=  "<div class='$class_status'>" .
-							"<a href='core/delete.php?pid=$pid' class='delete'> Eliminar </a>" .
-							"<p>"
-								. $datos['texto'] .
-							"</p>
-							 <h5>"
-								. $datos['fecha'] .
-							 "</h5>
-
-							 <div class='$class_enable'>
-							 	<button type='button' onclick=location.href='$url_status';>
-									<span class='mark x'></span>
-									<span class='mark xx'></span>
-								</button>
-							 </div>
+							"<a href='core/delete.php?pid=$pid' class='delete'> 
+								<span class='icon-cancel'></span>
+								Eliminar 
+							</a>" .
+							"<div class='sub-content-event'>
+								<p>" . $datos['texto'] . "</p>
+							 	<div class='$class_enable'>
+							 		<button type='button' onclick=location.href='$url_status';>
+										<span class='mark x'></span>
+										<span class='mark xx'></span>
+									</button>
+							 	</div>
+							</div>
+							<h5>". $datos['fecha'] ."</h5>
 						 </div>";
 	}
 	return $output;
